@@ -1,0 +1,2939 @@
+{
+  "task_name": "sales_prediction",
+  "schema_version": 4,
+  "corpus_id": "sales_lifecycle",
+  "total_instances": 12,
+  "forecast_horizon": 5,
+  "rollout_schedule_id": "sales_lifecycle",
+  "panel_sha256": "2c6037576f35b3b87d383c00a1f1099569e925d5bbadcc5d8bb65633df584079",
+  "base_year": 2027,
+  "dgp_config": {
+    "start_year": 2026,
+    "end_year": 2042,
+    "seed": 123,
+    "growth_range": [
+      1.1,
+      1.25
+    ],
+    "ceiling_range": [
+      500,
+      1200
+    ],
+    "ceiling_locality_jitter": [
+      0.7,
+      1.4
+    ],
+    "scale": 1000.0,
+    "floor": 100.0,
+    "global_shock_count": 0,
+    "global_shock_range": [
+      0.7,
+      0.85
+    ],
+    "idio_shock_prob": 0.0,
+    "idio_shock_range": [
+      0.75,
+      0.9
+    ]
+  },
+  "type_families": {
+    "ACCENT_CHAIR": "linear_up",
+    "BOOKCASE": "linear_up",
+    "CHESTERFIELD_SOFA": "linear_up",
+    "COFFEE_TABLE": "linear_up",
+    "CONSOLE_TABLE": "linear_up",
+    "DESK_CHAIR": "linear_up",
+    "DINING_ROOM_TABLE": "linear_up",
+    "DISPLAY_CABINET": "linear_up",
+    "DRESSER": "linear_up",
+    "END_TABLE": "linear_up",
+    "EXECUTIVE_DESK": "linear_up",
+    "KING_BED_FRAME": "linear_up",
+    "LOUNGE_CHAIR": "linear_up",
+    "NIGHTSTAND": "linear_up",
+    "QUEEN_BED_FRAME": "linear_up",
+    "SECTIONAL_SOFA": "linear_up",
+    "SIDEBOARD_BUFFET": "linear_up",
+    "UPHOLSTERED_BED": "linear_up",
+    "WRITING_DESK": "linear_up"
+  },
+  "stages": [
+    {
+      "stage_idx": 0,
+      "variant_id": null,
+      "label": "SF flagship launch (hierarchical demand, one store at a time)",
+      "num_instances": 4,
+      "start_instance_idx": 0,
+      "end_instance_idx": 4,
+      "seed": 42,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "trend_assignment": {
+        "ACCENT_CHAIR": "linear_up",
+        "BOOKCASE": "linear_up",
+        "CHESTERFIELD_SOFA": "linear_up",
+        "COFFEE_TABLE": "linear_up",
+        "CONSOLE_TABLE": "linear_up",
+        "DESK_CHAIR": "linear_up",
+        "DINING_ROOM_TABLE": "linear_up",
+        "DISPLAY_CABINET": "linear_up",
+        "DRESSER": "linear_up",
+        "END_TABLE": "linear_up",
+        "EXECUTIVE_DESK": "linear_up",
+        "KING_BED_FRAME": "linear_up",
+        "LOUNGE_CHAIR": "linear_up",
+        "NIGHTSTAND": "linear_up",
+        "QUEEN_BED_FRAME": "linear_up",
+        "SECTIONAL_SOFA": "linear_up",
+        "SIDEBOARD_BUFFET": "linear_up",
+        "UPHOLSTERED_BED": "linear_up",
+        "WRITING_DESK": "linear_up"
+      },
+      "bucket_trend_assignment": {},
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      },
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01",
+        "LOC02",
+        "LOC03"
+      ],
+      "schema_profile": "clean",
+      "distractors": [
+        "weather_index",
+        "foot_traffic"
+      ],
+      "location_open_year": {},
+      "generator_kind": "hierarchical_panel"
+    },
+    {
+      "stage_idx": 1,
+      "variant_id": null,
+      "label": "Store rotation continues (cross-locality transfer deepens)",
+      "num_instances": 4,
+      "start_instance_idx": 4,
+      "end_instance_idx": 8,
+      "seed": 43,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "trend_assignment": {
+        "ACCENT_CHAIR": "linear_up",
+        "BOOKCASE": "linear_up",
+        "CHESTERFIELD_SOFA": "linear_up",
+        "COFFEE_TABLE": "linear_up",
+        "CONSOLE_TABLE": "linear_up",
+        "DESK_CHAIR": "linear_up",
+        "DINING_ROOM_TABLE": "linear_up",
+        "DISPLAY_CABINET": "linear_up",
+        "DRESSER": "linear_up",
+        "END_TABLE": "linear_up",
+        "EXECUTIVE_DESK": "linear_up",
+        "KING_BED_FRAME": "linear_up",
+        "LOUNGE_CHAIR": "linear_up",
+        "NIGHTSTAND": "linear_up",
+        "QUEEN_BED_FRAME": "linear_up",
+        "SECTIONAL_SOFA": "linear_up",
+        "SIDEBOARD_BUFFET": "linear_up",
+        "UPHOLSTERED_BED": "linear_up",
+        "WRITING_DESK": "linear_up"
+      },
+      "bucket_trend_assignment": {},
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      },
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01",
+        "LOC02",
+        "LOC03"
+      ],
+      "schema_profile": "clean",
+      "distractors": [
+        "online_search_volume",
+        "marketing_spend"
+      ],
+      "location_open_year": {},
+      "generator_kind": "hierarchical_panel"
+    },
+    {
+      "stage_idx": 2,
+      "variant_id": null,
+      "label": "Full cycle (all clusters observed across all stores)",
+      "num_instances": 4,
+      "start_instance_idx": 8,
+      "end_instance_idx": 12,
+      "seed": 44,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "trend_assignment": {
+        "ACCENT_CHAIR": "linear_up",
+        "BOOKCASE": "linear_up",
+        "CHESTERFIELD_SOFA": "linear_up",
+        "COFFEE_TABLE": "linear_up",
+        "CONSOLE_TABLE": "linear_up",
+        "DESK_CHAIR": "linear_up",
+        "DINING_ROOM_TABLE": "linear_up",
+        "DISPLAY_CABINET": "linear_up",
+        "DRESSER": "linear_up",
+        "END_TABLE": "linear_up",
+        "EXECUTIVE_DESK": "linear_up",
+        "KING_BED_FRAME": "linear_up",
+        "LOUNGE_CHAIR": "linear_up",
+        "NIGHTSTAND": "linear_up",
+        "QUEEN_BED_FRAME": "linear_up",
+        "SECTIONAL_SOFA": "linear_up",
+        "SIDEBOARD_BUFFET": "linear_up",
+        "UPHOLSTERED_BED": "linear_up",
+        "WRITING_DESK": "linear_up"
+      },
+      "bucket_trend_assignment": {},
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      },
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01",
+        "LOC02",
+        "LOC03"
+      ],
+      "schema_profile": "clean",
+      "distractors": [
+        "competitor_price_index"
+      ],
+      "location_open_year": {},
+      "generator_kind": "hierarchical_panel"
+    }
+  ],
+  "instances": [
+    {
+      "instance_idx": 0,
+      "stage_idx": 0,
+      "variant_id": null,
+      "target_year": 2027,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01"
+      ],
+      "schema_profile": "west_coast",
+      "distractors": [
+        "weather_index",
+        "foot_traffic"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC01": "west_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 1,
+      "stage_idx": 0,
+      "variant_id": null,
+      "target_year": 2028,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC02"
+      ],
+      "schema_profile": "east_coast",
+      "distractors": [
+        "weather_index",
+        "foot_traffic"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC02": "east_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 2,
+      "stage_idx": 0,
+      "variant_id": null,
+      "target_year": 2029,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC03"
+      ],
+      "schema_profile": "national",
+      "distractors": [
+        "weather_index",
+        "foot_traffic"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC03": "national"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 3,
+      "stage_idx": 0,
+      "variant_id": null,
+      "target_year": 2030,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01"
+      ],
+      "schema_profile": "west_coast",
+      "distractors": [
+        "weather_index",
+        "foot_traffic"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC01": "west_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 4,
+      "stage_idx": 1,
+      "variant_id": null,
+      "target_year": 2031,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC02"
+      ],
+      "schema_profile": "east_coast",
+      "distractors": [
+        "online_search_volume",
+        "marketing_spend"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC02": "east_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 5,
+      "stage_idx": 1,
+      "variant_id": null,
+      "target_year": 2032,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC03"
+      ],
+      "schema_profile": "national",
+      "distractors": [
+        "online_search_volume",
+        "marketing_spend"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC03": "national"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 6,
+      "stage_idx": 1,
+      "variant_id": null,
+      "target_year": 2033,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01"
+      ],
+      "schema_profile": "west_coast",
+      "distractors": [
+        "online_search_volume",
+        "marketing_spend"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC01": "west_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 7,
+      "stage_idx": 1,
+      "variant_id": null,
+      "target_year": 2034,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC02"
+      ],
+      "schema_profile": "east_coast",
+      "distractors": [
+        "online_search_volume",
+        "marketing_spend"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC02": "east_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 8,
+      "stage_idx": 2,
+      "variant_id": null,
+      "target_year": 2035,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC03"
+      ],
+      "schema_profile": "national",
+      "distractors": [
+        "competitor_price_index"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC03": "national"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 9,
+      "stage_idx": 2,
+      "variant_id": null,
+      "target_year": 2036,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC01"
+      ],
+      "schema_profile": "west_coast",
+      "distractors": [
+        "competitor_price_index"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC01": "west_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 10,
+      "stage_idx": 2,
+      "variant_id": null,
+      "target_year": 2037,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC02"
+      ],
+      "schema_profile": "east_coast",
+      "distractors": [
+        "competitor_price_index"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC02": "east_coast"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    },
+    {
+      "instance_idx": 11,
+      "stage_idx": 2,
+      "variant_id": null,
+      "target_year": 2038,
+      "target_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "target_entities": [
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay King Bed Frame"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Accent Chair"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Bookcase"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Brass End Table"
+        },
+        {
+          "locality": "San Francisco",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "New York",
+          "furniture_name": "Back Bay Desk Chair"
+        },
+        {
+          "locality": "Chicago",
+          "furniture_name": "Back Bay Desk Chair"
+        }
+      ],
+      "forecast_horizon": 5,
+      "visible_types": [
+        "ACCENT_CHAIR",
+        "BOOKCASE",
+        "CHESTERFIELD_SOFA",
+        "COFFEE_TABLE",
+        "CONSOLE_TABLE",
+        "DESK_CHAIR",
+        "DINING_ROOM_TABLE",
+        "DISPLAY_CABINET",
+        "DRESSER",
+        "END_TABLE",
+        "EXECUTIVE_DESK",
+        "KING_BED_FRAME",
+        "LOUNGE_CHAIR",
+        "NIGHTSTAND",
+        "QUEEN_BED_FRAME",
+        "SECTIONAL_SOFA",
+        "SIDEBOARD_BUFFET",
+        "UPHOLSTERED_BED",
+        "WRITING_DESK"
+      ],
+      "visible_locations": [
+        "LOC03"
+      ],
+      "schema_profile": "national",
+      "distractors": [
+        "competitor_price_index"
+      ],
+      "location_open_year": {},
+      "retention_years": 1,
+      "location_assortments": {
+        "LOC01": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ],
+        "LOC02": [
+          "COFFEE_TABLE",
+          "DINING_ROOM_TABLE",
+          "CONSOLE_TABLE",
+          "END_TABLE",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "KING_BED_FRAME",
+          "QUEEN_BED_FRAME",
+          "NIGHTSTAND",
+          "UPHOLSTERED_BED"
+        ],
+        "LOC03": [
+          "SECTIONAL_SOFA",
+          "CHESTERFIELD_SOFA",
+          "LOUNGE_CHAIR",
+          "ACCENT_CHAIR",
+          "BOOKCASE",
+          "DRESSER",
+          "DISPLAY_CABINET",
+          "SIDEBOARD_BUFFET",
+          "WRITING_DESK",
+          "EXECUTIVE_DESK",
+          "DESK_CHAIR"
+        ]
+      },
+      "location_schema_map": {
+        "LOC03": "national"
+      },
+      "generator_kind": "hierarchical_panel",
+      "dgp_params": {
+        "start_year": 2026,
+        "end_year": 2042,
+        "seed": 123,
+        "growth_range": [
+          1.1,
+          1.25
+        ],
+        "ceiling_range": [
+          500,
+          1200
+        ],
+        "ceiling_locality_jitter": [
+          0.7,
+          1.4
+        ],
+        "scale": 1000.0,
+        "floor": 100.0,
+        "global_shock_count": 0,
+        "global_shock_range": [
+          0.7,
+          0.85
+        ],
+        "idio_shock_prob": 0.0,
+        "idio_shock_range": [
+          0.75,
+          0.9
+        ]
+      }
+    }
+  ]
+}

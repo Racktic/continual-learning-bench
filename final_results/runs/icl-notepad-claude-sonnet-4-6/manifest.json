@@ -1,0 +1,226 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-notepad-claude-sonnet-4-6",
+  "run_slug": "icl-notepad-claude-sonnet-4-6",
+  "run_group_id": "2026-05-02T15-59-21.252476Z_run-all",
+  "system": "icl_notepad",
+  "system_args": [
+    "--system.model",
+    "claude-sonnet-4-6"
+  ],
+  "started_at": "2026-05-02T15:59:21.252497+00:00",
+  "finished_at": "2026-05-03T16:51:03.571786+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/manifest.json",
+  "final_results_dir": "final_results/runs/icl-notepad-claude-sonnet-4-6",
+  "logs_dir": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs",
+  "current_batch_id": "2026-05-03T15-51-13.174537Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T15:59:21.255783+00:00",
+      "finished_at": "2026-05-02T17:53:49.880289+00:00",
+      "exit_code": 0,
+      "duration_seconds": 6868.59,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/2026-05-02T15-59-21.252476Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/exploitable_poker.json.gz",
+      "batch_id": "2026-05-02T15-59-21.252476Z_run-all",
+      "headline": {
+        "cumulative_gain": -1.679833,
+        "total_reward": 115.42,
+        "mean_latency_seconds": 51.910746,
+        "total_cost_usd": 6.7460756
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T18:27:56.442291+00:00",
+      "finished_at": "2026-05-02T18:42:06.068004+00:00",
+      "exit_code": 0,
+      "duration_seconds": 849.62,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/2026-05-02T15-59-21.252476Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/database_exploration.json.gz",
+      "batch_id": "2026-05-02T15-59-21.252476Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.091666,
+        "total_reward": 11.00004,
+        "mean_latency_seconds": 18.599439,
+        "total_cost_usd": 2.2400266
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T18:42:06.195156+00:00",
+      "finished_at": "2026-05-02T19:17:29.994131+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2123.82,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/2026-05-02T15-59-21.252476Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "2026-05-02T15-59-21.252476Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.18037,
+        "total_reward": 35.99298,
+        "mean_latency_seconds": 18.330574,
+        "total_cost_usd": 2.985492
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-03T04:08:55.091858+00:00",
+      "finished_at": "2026-05-03T07:24:17.950987+00:00",
+      "exit_code": 0,
+      "duration_seconds": 11723.28,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/2026-05-03T04-08-55.086627Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/cohort_studies.json.gz",
+      "batch_id": "2026-05-03T04-08-55.086627Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.039764,
+        "total_reward": -0.783885,
+        "mean_latency_seconds": 305.508224,
+        "total_cost_usd": 11.559711
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-03T04:08:55.091899+00:00",
+      "finished_at": "2026-05-03T05:10:19.641038+00:00",
+      "exit_code": 0,
+      "duration_seconds": 3684.5,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-03T04-08-55.086627Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-03T04-08-55.086627Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.482515,
+        "total_reward": 10.07268,
+        "mean_latency_seconds": 156.515017,
+        "total_cost_usd": 3.752957
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/sales_prediction.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-03T15:51:13.180110+00:00",
+      "finished_at": "2026-05-03T16:51:03.433751+00:00",
+      "exit_code": 0,
+      "duration_seconds": 3590.23,
+      "log_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/2026-05-03T15-51-13.174537Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/tasks/codebase_adaptation.json.gz",
+      "batch_id": "2026-05-03T15-51-13.174537Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.046842,
+        "total_reward": 8.765,
+        "mean_latency_seconds": 94.619315,
+        "total_cost_usd": 4.241748
+      },
+      "raw_summary_path": "results/codebase_adaptation/viewer_artifact_2026-05-03T15-51-13.174537Z_run-all_20260503_125057.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-notepad-claude-sonnet-4-6/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "2026-05-02T15-59-21.252476Z_run-all",
+      "run_group_id": "2026-05-02T15-59-21.252476Z_run-all",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring"
+      ],
+      "tasks_failed": [
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T15:59:21.252497+00:00",
+      "finished_at": "2026-05-02T21:45:23.457993+00:00"
+    },
+    {
+      "batch_id": "2026-05-03T00-28-02.538610Z_run-all",
+      "run_group_id": "2026-05-03T00-28-02.538610Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-05-03T00:28:02.538630+00:00",
+      "finished_at": "2026-05-03T02:59:23.682740+00:00"
+    },
+    {
+      "batch_id": "2026-05-03T04-08-55.086627Z_run-all",
+      "run_group_id": "2026-05-03T04-08-55.086627Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-03T04:08:55.086647+00:00",
+      "finished_at": "2026-05-03T07:24:18.055033+00:00"
+    },
+    {
+      "batch_id": "2026-05-03T15-51-13.174537Z_run-all",
+      "run_group_id": "2026-05-03T15-51-13.174537Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-03T15:51:13.174557+00:00",
+      "finished_at": "2026-05-03T16:51:03.571786+00:00"
+    }
+  ]
+}

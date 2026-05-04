@@ -1,0 +1,207 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-gpt-5.4",
+  "run_slug": "icl-gpt-5.4",
+  "run_group_id": "c45489b889364fa1be3e856079b61824",
+  "system": "icl",
+  "system_args": [
+    "--system.model",
+    "gpt-5.4"
+  ],
+  "started_at": "2026-04-29T02:15:31.808758+00:00",
+  "finished_at": "2026-05-02T13:43:29.611276+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-gpt-5.4/manifest.json",
+  "final_results_dir": "final_results/runs/icl-gpt-5.4",
+  "logs_dir": "final_results/runs/icl-gpt-5.4/logs",
+  "current_batch_id": "2026-05-02T13-31-26.077090Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T02:15:31.813780+00:00",
+      "finished_at": "2026-04-29T02:52:39.489188+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2227.67,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/5da224f2a7d74831baaa61743decbd29/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "batch_id": "c45489b8",
+      "headline": {
+        "cumulative_gain": -0.315333,
+        "total_reward": 95.76,
+        "mean_latency_seconds": 19.130604,
+        "total_cost_usd": 4.6101348
+      },
+      "raw_summary_path": "final_results/runs/icl-gpt-5.4/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T02:15:31.814178+00:00",
+      "finished_at": "2026-04-29T02:28:33.421500+00:00",
+      "exit_code": 0,
+      "duration_seconds": 781.6,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/d4399106f5964238b004753ec69bda81/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/database_exploration.json.gz",
+      "batch_id": "c45489b8",
+      "headline": {
+        "cumulative_gain": 0.20866,
+        "total_reward": 13.8797,
+        "mean_latency_seconds": 12.143027,
+        "total_cost_usd": 1.0318078
+      },
+      "raw_summary_path": "final_results/runs/icl-gpt-5.4/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T02:15:31.814187+00:00",
+      "finished_at": "2026-04-29T02:26:21.924747+00:00",
+      "exit_code": 0,
+      "duration_seconds": 650.1,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/f8dca1a243854671a9cf328b9b93329a/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "c45489b8",
+      "headline": {
+        "cumulative_gain": 0.293744,
+        "total_reward": 46.19798,
+        "mean_latency_seconds": 6.138455,
+        "total_cost_usd": 1.9346846
+      },
+      "raw_summary_path": "final_results/runs/icl-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T02:15:31.813895+00:00",
+      "finished_at": "2026-04-29T02:41:08.975866+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1537.15,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/396488a8820b415da394fe6d421ca761/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/cohort_studies.json.gz",
+      "batch_id": "c45489b8",
+      "headline": {
+        "cumulative_gain": -0.020921,
+        "total_reward": -0.559398,
+        "mean_latency_seconds": 57.346887,
+        "total_cost_usd": 3.7341352
+      },
+      "raw_summary_path": "final_results/runs/icl-gpt-5.4/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T03:18:36.545829+00:00",
+      "finished_at": "2026-04-29T03:57:21.851136+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2325.31,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/365f80a2d4c84438ad19d52e9a0c1d8c/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "batch_id": "7c920955",
+      "headline": {
+        "cumulative_gain": 0.036316,
+        "total_reward": 10.14,
+        "mean_latency_seconds": 41.87542,
+        "total_cost_usd": 3.5589614
+      },
+      "raw_summary_path": "final_results/runs/icl-gpt-5.4/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T13:31:26.081273+00:00",
+      "finished_at": "2026-05-02T13:43:29.573099+00:00",
+      "exit_code": 0,
+      "duration_seconds": 723.5,
+      "log_path": "final_results/runs/icl-gpt-5.4/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T13-31-26.077090Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-gpt-5.4/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gpt-5.4/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T13-31-26.077090Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.302727,
+        "total_reward": 9.23002,
+        "mean_latency_seconds": 53.366193,
+        "total_cost_usd": 3.5198272
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T13-31-26.077090Z_run-all_20260502_094324.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-gpt-5.4/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "c45489b8",
+      "run_group_id": "c45489b889364fa1be3e856079b61824",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_failed": [
+        "codebase_adaptation"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T02:15:31.808758+00:00",
+      "finished_at": "2026-04-29T02:52:39.869250+00:00"
+    },
+    {
+      "batch_id": "7c920955",
+      "run_group_id": "7c92095538c5442f99a85033a1c67a73",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T03:18:36.543422+00:00",
+      "finished_at": "2026-04-29T03:57:21.957318+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T13-31-26.077090Z_run-all",
+      "run_group_id": "2026-05-02T13-31-26.077090Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T13:31:26.077107+00:00",
+      "finished_at": "2026-05-02T13:43:29.611276+00:00"
+    }
+  ]
+}

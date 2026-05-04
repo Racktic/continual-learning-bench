@@ -1,0 +1,222 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "mem0-gpt-5.4",
+  "run_slug": "mem0-gpt-5.4",
+  "run_group_id": "ddb2e6ac87cf434ea92e97d6683b8944",
+  "system": "mem0",
+  "system_args": [
+    "--system.model",
+    "gpt-5.4"
+  ],
+  "started_at": "2026-04-29T17:13:44.820134+00:00",
+  "finished_at": "2026-05-02T12:36:26.201571+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/mem0-gpt-5.4/manifest.json",
+  "final_results_dir": "final_results/runs/mem0-gpt-5.4",
+  "logs_dir": "final_results/runs/mem0-gpt-5.4/logs",
+  "current_batch_id": "2026-05-02T11-59-15.170474Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:13:44.824400+00:00",
+      "finished_at": "2026-04-29T18:14:09.218232+00:00",
+      "exit_code": 0,
+      "duration_seconds": 3446.9,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/a92e461220b74986b3d84db5ea190e0d/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "batch_id": "ddb2e6ac",
+      "headline": {
+        "cumulative_gain": -0.1415,
+        "total_reward": 73.42,
+        "mean_latency_seconds": 15.557993,
+        "total_cost_usd": 3.5733654
+      },
+      "raw_summary_path": "final_results/runs/mem0-gpt-5.4/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:13:44.824440+00:00",
+      "finished_at": "2026-04-29T17:40:24.995452+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1600.15,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/9867c2d24e4b4a98b85ed7c5edc86565/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/database_exploration.json.gz",
+      "batch_id": "ddb2e6ac",
+      "headline": {
+        "cumulative_gain": 0.322668,
+        "total_reward": 17.23994,
+        "mean_latency_seconds": 13.554431,
+        "total_cost_usd": 1.9689826
+      },
+      "raw_summary_path": "final_results/runs/mem0-gpt-5.4/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:13:44.824377+00:00",
+      "finished_at": "2026-04-29T17:32:56.144229+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1151.31,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/1d4c95144e994d0384cc96c3fb5da61e/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "ddb2e6ac",
+      "headline": {
+        "cumulative_gain": 0.155927,
+        "total_reward": 33.79352,
+        "mean_latency_seconds": 5.742049,
+        "total_cost_usd": 1.3890742
+      },
+      "raw_summary_path": "final_results/runs/mem0-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:13:44.824435+00:00",
+      "finished_at": "2026-04-29T18:30:19.616029+00:00",
+      "exit_code": 0,
+      "duration_seconds": 4417.29,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/53d5fd3b0bf546088a43c134aad555ca/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/cohort_studies.json.gz",
+      "batch_id": "ddb2e6ac",
+      "headline": {
+        "cumulative_gain": 0.029675,
+        "total_reward": -0.675375,
+        "mean_latency_seconds": 78.79506,
+        "total_cost_usd": 5.9987076
+      },
+      "raw_summary_path": "final_results/runs/mem0-gpt-5.4/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T19:19:45.944730+00:00",
+      "finished_at": "2026-04-29T20:02:37.215836+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2571.26,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/da5d7b6ababb446d9117f94b7cb9e9f0/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "batch_id": "38abe8be",
+      "headline": {
+        "cumulative_gain": 0.156842,
+        "total_reward": 11.105,
+        "mean_latency_seconds": 43.212483,
+        "total_cost_usd": 2.6241722
+      },
+      "raw_summary_path": "final_results/runs/mem0-gpt-5.4/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T11:59:15.175610+00:00",
+      "finished_at": "2026-05-02T12:36:26.155641+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2230.96,
+      "log_path": "final_results/runs/mem0-gpt-5.4/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T11-59-15.170474Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/mem0-gpt-5.4/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/mem0-gpt-5.4/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T11-59-15.170474Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.255358,
+        "total_reward": 7.8148,
+        "mean_latency_seconds": 80.971087,
+        "total_cost_usd": 2.7885074
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T11-59-15.170474Z_run-all_20260502_083620.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/mem0-gpt-5.4/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "ddb2e6ac",
+      "run_group_id": "ddb2e6ac87cf434ea92e97d6683b8944",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_failed": [
+        "codebase_adaptation"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T17:13:44.820134+00:00",
+      "finished_at": "2026-04-29T18:30:19.850903+00:00"
+    },
+    {
+      "batch_id": "38abe8be",
+      "run_group_id": "38abe8be5a3e4ca9b0d78ee3be1c42b8",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T19:19:45.942763+00:00",
+      "finished_at": "2026-04-29T20:02:37.305126+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T11-57-29.133971Z_run-all",
+      "run_group_id": "2026-05-02T11-57-29.133971Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "sales_prediction"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T11:57:29.133988+00:00",
+      "finished_at": "2026-05-02T11:57:52.041823+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T11-59-15.170474Z_run-all",
+      "run_group_id": "2026-05-02T11-59-15.170474Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T11:59:15.170495+00:00",
+      "finished_at": "2026-05-02T12:36:26.201571+00:00"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-notepad-gemini-3.1-pro-preview",
+  "run_slug": "icl-notepad-gemini-3.1-pro-preview",
+  "run_group_id": "a1cef2efedb847b59cf5e488540ba76b",
+  "system": "icl_notepad",
+  "system_args": [
+    "--system.model",
+    "gemini/gemini-3.1-pro-preview"
+  ],
+  "started_at": "2026-04-29T17:18:58.272487+00:00",
+  "finished_at": "2026-05-02T13:26:38.794641+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/manifest.json",
+  "final_results_dir": "final_results/runs/icl-notepad-gemini-3.1-pro-preview",
+  "logs_dir": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs",
+  "current_batch_id": "2026-05-02T13-15-16.662706Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:18:58.275470+00:00",
+      "finished_at": "2026-04-29T17:44:16.802764+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1518.46,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/e3723e0692db41358167a89390455ab1/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz",
+      "batch_id": "a1cef2ef",
+      "headline": {
+        "cumulative_gain": 0.141667,
+        "total_reward": 53.5,
+        "mean_latency_seconds": 13.128105,
+        "total_cost_usd": 1.3261488
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:18:58.275613+00:00",
+      "finished_at": "2026-04-29T17:48:05.452065+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1747.11,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/bfed9af588d34afa86faced99898f5a0/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/database_exploration.json.gz",
+      "batch_id": "a1cef2ef",
+      "headline": {
+        "cumulative_gain": 0.108001,
+        "total_reward": 8.52004,
+        "mean_latency_seconds": 39.611118,
+        "total_cost_usd": 2.632269
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T17:18:58.275666+00:00",
+      "finished_at": "2026-04-29T18:03:28.397664+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2670.04,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/c7d757c2ec6243d0a2532842afe118a7/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "a1cef2ef",
+      "headline": {
+        "cumulative_gain": 0.104022,
+        "total_reward": 29.12168,
+        "mean_latency_seconds": 18.122951,
+        "total_cost_usd": 2.7960348
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T21:05:53.936309+00:00",
+      "finished_at": "2026-04-29T21:15:32.631330+00:00",
+      "exit_code": 0,
+      "duration_seconds": 578.69,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/32a0fce5f6fa48fab945b5393ec8f274/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz",
+      "batch_id": "0f68c138",
+      "headline": {
+        "cumulative_gain": -0.054896,
+        "total_reward": -1.430014,
+        "mean_latency_seconds": 26.250437,
+        "total_cost_usd": 1.5313784
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-30T00:25:22.218439+00:00",
+      "finished_at": "2026-04-30T01:07:54.473549+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2552.28,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/2026-04-30T00-25-22_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz",
+      "batch_id": "2026-04-30T00-25-22_run-all",
+      "headline": {
+        "cumulative_gain": -0.069211,
+        "total_reward": 7.11,
+        "mean_latency_seconds": 66.693738,
+        "total_cost_usd": 3.5062518
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T13:15:16.667843+00:00",
+      "finished_at": "2026-05-02T13:26:38.765115+00:00",
+      "exit_code": 0,
+      "duration_seconds": 682.1,
+      "log_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T13-15-16.662706Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T13-15-16.662706Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.412647,
+        "total_reward": 8.10796,
+        "mean_latency_seconds": 47.778383,
+        "total_cost_usd": 1.5254392
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T13-15-16.662706Z_run-all_20260502_092633.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-notepad-gemini-3.1-pro-preview/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "a1cef2ef",
+      "run_group_id": "a1cef2efedb847b59cf5e488540ba76b",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "sales_prediction"
+      ],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T17:18:58.272487+00:00",
+      "finished_at": "2026-04-29T18:03:28.452843+00:00"
+    },
+    {
+      "batch_id": "0f68c138",
+      "run_group_id": "0f68c138145442b0b9d783672c98d412",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "cohort_studies"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T21:05:53.932741+00:00",
+      "finished_at": "2026-04-29T21:15:32.664055+00:00"
+    },
+    {
+      "batch_id": "2026-04-30T00-25-22_run-all",
+      "run_group_id": "2026-04-30T00-25-22_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-30T00:25:22.215968+00:00",
+      "finished_at": "2026-04-30T01:07:54.582896+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T13-15-16.662706Z_run-all",
+      "run_group_id": "2026-05-02T13-15-16.662706Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T13:15:16.662722+00:00",
+      "finished_at": "2026-05-02T13:26:38.794641+00:00"
+    }
+  ]
+}

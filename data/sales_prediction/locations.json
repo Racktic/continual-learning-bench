@@ -1,0 +1,17 @@
+[
+  {
+    "location_id": "LOC01",
+    "locality": "San Francisco",
+    "state": "CA"
+  },
+  {
+    "location_id": "LOC02",
+    "locality": "New York",
+    "state": "NY"
+  },
+  {
+    "location_id": "LOC03",
+    "locality": "Chicago",
+    "state": "IL"
+  }
+]

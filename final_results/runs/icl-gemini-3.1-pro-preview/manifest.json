@@ -1,0 +1,284 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-gemini-3.1-pro-preview",
+  "run_slug": "icl-gemini-3.1-pro-preview",
+  "run_group_id": "93b29e0c40fa482ca5437f8f0b563e4e",
+  "system": "icl",
+  "system_args": [
+    "--system.model",
+    "gemini/gemini-3.1-pro-preview"
+  ],
+  "started_at": "2026-04-29T13:14:03.260099+00:00",
+  "finished_at": "2026-05-02T13:31:21.887586+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-gemini-3.1-pro-preview/manifest.json",
+  "final_results_dir": "final_results/runs/icl-gemini-3.1-pro-preview",
+  "logs_dir": "final_results/runs/icl-gemini-3.1-pro-preview/logs",
+  "current_batch_id": "2026-05-02T13-26-43.224567Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T13:14:03.263507+00:00",
+      "finished_at": "2026-04-29T13:45:33.052561+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1889.82,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/a59656523c5642cca03fa8d7ba250b7c/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz",
+      "batch_id": "93b29e0c",
+      "headline": {
+        "cumulative_gain": 0.274167,
+        "total_reward": 76.4,
+        "mean_latency_seconds": 15.830903,
+        "total_cost_usd": 3.9894626
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T13:14:03.263581+00:00",
+      "finished_at": "2026-04-29T13:29:59.411359+00:00",
+      "exit_code": 0,
+      "duration_seconds": 956.14,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/2680511db5064fb497d1be800ac305b8/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/database_exploration.json.gz",
+      "batch_id": "93b29e0c",
+      "headline": {
+        "cumulative_gain": 0.170665,
+        "total_reward": 11.55992,
+        "mean_latency_seconds": 17.972472,
+        "total_cost_usd": 1.3202768
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T13:14:03.263757+00:00",
+      "finished_at": "2026-04-29T13:45:24.349507+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1881.11,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/22211927be894caf9ad6beef1737ef10/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "93b29e0c",
+      "headline": {
+        "cumulative_gain": 0.147476,
+        "total_reward": 33.03252,
+        "mean_latency_seconds": 15.713817,
+        "total_cost_usd": 3.8359498
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T23:45:32.658805+00:00",
+      "finished_at": "2026-04-30T00:14:41.585811+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1748.91,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/2026-04-29T23-45-32_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz",
+      "batch_id": "2026-04-29T23-45-32_run-all",
+      "headline": {
+        "cumulative_gain": -0.081579,
+        "total_reward": 5.125,
+        "mean_latency_seconds": 39.766113,
+        "total_cost_usd": 3.4006356
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T23:45:32.658870+00:00",
+      "finished_at": "2026-04-29T23:57:26.408826+00:00",
+      "exit_code": 0,
+      "duration_seconds": 713.74,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/2026-04-29T23-45-32_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz",
+      "batch_id": "2026-04-29T23-45-32_run-all",
+      "headline": {
+        "cumulative_gain": -0.097193,
+        "total_reward": -2.304017,
+        "mean_latency_seconds": 26.230198,
+        "total_cost_usd": 1.8319472
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T13:26:43.229773+00:00",
+      "finished_at": "2026-05-02T13:31:21.868504+00:00",
+      "exit_code": 0,
+      "duration_seconds": 278.64,
+      "log_path": "final_results/runs/icl-gemini-3.1-pro-preview/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T13-26-43.224567Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3.1-pro-preview/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T13-26-43.224567Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.2133,
+        "total_reward": 6.468,
+        "mean_latency_seconds": 21.403007,
+        "total_cost_usd": 0.8498424
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T13-26-43.224567Z_run-all_20260502_093116.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-gemini-3.1-pro-preview/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "93b29e0c",
+      "run_group_id": "93b29e0c40fa482ca5437f8f0b563e4e",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "sales_prediction"
+      ],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T13:14:03.260099+00:00",
+      "finished_at": "2026-04-29T13:45:33.144847+00:00"
+    },
+    {
+      "batch_id": "895c20f3",
+      "run_group_id": "895c20f3c0a34669bf49181dc4f2be60",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T14:03:27.659086+00:00",
+      "finished_at": "2026-04-29T14:15:45.223237+00:00"
+    },
+    {
+      "batch_id": "286f588e",
+      "run_group_id": "286f588eca9349989e9e95b92359509b",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T14:27:58.013544+00:00",
+      "finished_at": "2026-04-29T14:42:04.484722+00:00"
+    },
+    {
+      "batch_id": "8cf91935",
+      "run_group_id": "8cf91935c82e45d98d9389e5dc730ce9",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "cohort_studies"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T15:59:58.000557+00:00",
+      "finished_at": "2026-04-29T16:12:24.327209+00:00"
+    },
+    {
+      "batch_id": "0fe50648",
+      "run_group_id": "0fe50648580f4774af48de46dfe5b9cb",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T16:12:59.838346+00:00",
+      "finished_at": "2026-04-29T16:27:04.733683+00:00"
+    },
+    {
+      "batch_id": "2026-04-29T22-41-26_run-all",
+      "run_group_id": "2026-04-29T22-41-26_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "cohort_studies"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T22:41:26.725930+00:00",
+      "finished_at": "2026-04-29T22:50:24.081821+00:00"
+    },
+    {
+      "batch_id": "2026-04-29T23-45-32_run-all",
+      "run_group_id": "2026-04-29T23-45-32_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation",
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation",
+        "cohort_studies"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T23:45:32.656129+00:00",
+      "finished_at": "2026-04-30T00:14:41.659698+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T13-26-43.224567Z_run-all",
+      "run_group_id": "2026-05-02T13-26-43.224567Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T13:26:43.224584+00:00",
+      "finished_at": "2026-05-02T13:31:21.887586+00:00"
+    }
+  ]
+}

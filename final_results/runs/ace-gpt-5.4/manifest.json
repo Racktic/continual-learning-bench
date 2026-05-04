@@ -1,0 +1,221 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "ace-gpt-5.4",
+  "run_slug": "ace-gpt-5.4",
+  "run_group_id": "dd71e76542e941a987099e17f19b0ed5",
+  "system": "ace",
+  "system_args": [
+    "--system.model",
+    "gpt-5.4"
+  ],
+  "started_at": "2026-04-29T15:37:41.296088+00:00",
+  "finished_at": "2026-05-02T11:51:15.803819+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/ace-gpt-5.4/manifest.json",
+  "final_results_dir": "final_results/runs/ace-gpt-5.4",
+  "logs_dir": "final_results/runs/ace-gpt-5.4/logs",
+  "current_batch_id": "2026-05-02T11-24-28.889430Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T15:37:41.309827+00:00",
+      "finished_at": "2026-04-29T16:46:56.911786+00:00",
+      "exit_code": 0,
+      "duration_seconds": 4155.58,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/7a010325ce7e44258b95094fd3937201/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "batch_id": "dd71e765",
+      "headline": {
+        "cumulative_gain": 0.013333,
+        "total_reward": 143.5,
+        "mean_latency_seconds": 17.237483,
+        "total_cost_usd": 13.2029432
+      },
+      "raw_summary_path": "final_results/runs/ace-gpt-5.4/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T15:37:41.309880+00:00",
+      "finished_at": "2026-04-29T16:18:50.082081+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2468.75,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/51515c29243f414a9a91d864493b41a0/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/database_exploration.json.gz",
+      "batch_id": "dd71e765",
+      "headline": {
+        "cumulative_gain": 0.059667,
+        "total_reward": 7.8533,
+        "mean_latency_seconds": 33.487492,
+        "total_cost_usd": 8.775944
+      },
+      "raw_summary_path": "final_results/runs/ace-gpt-5.4/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T15:37:41.310072+00:00",
+      "finished_at": "2026-04-29T16:10:07.118235+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1945.79,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/5a1e477063474ef8b902302e00ff721e/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "dd71e765",
+      "headline": {
+        "cumulative_gain": 0.000188,
+        "total_reward": 19.77796,
+        "mean_latency_seconds": 3.986366,
+        "total_cost_usd": 3.955291
+      },
+      "raw_summary_path": "final_results/runs/ace-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T15:37:41.310977+00:00",
+      "finished_at": "2026-04-29T16:23:10.265050+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2728.92,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/ffbd3651e2e84b24a95d6e099a41020d/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/cohort_studies.json.gz",
+      "batch_id": "dd71e765",
+      "headline": {
+        "cumulative_gain": 0.020199,
+        "total_reward": -0.07475,
+        "mean_latency_seconds": 97.512541,
+        "total_cost_usd": 12.7972616
+      },
+      "raw_summary_path": "final_results/runs/ace-gpt-5.4/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T20:31:30.411660+00:00",
+      "finished_at": "2026-04-29T21:03:47.120465+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1936.72,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/2026-04-29T20-31-30_run-all/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "batch_id": "2026-04-29T20-31-30_run-all",
+      "headline": {
+        "cumulative_gain": 0.083158,
+        "total_reward": 11.58,
+        "mean_latency_seconds": 60.128989,
+        "total_cost_usd": 15.6596136
+      },
+      "raw_summary_path": "final_results/runs/ace-gpt-5.4/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T11:24:28.893863+00:00",
+      "finished_at": "2026-05-02T11:51:15.734826+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1606.81,
+      "log_path": "final_results/runs/ace-gpt-5.4/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T11-24-28.889430Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/ace-gpt-5.4/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/ace-gpt-5.4/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T11-24-28.889430Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.076055,
+        "total_reward": 6.11566,
+        "mean_latency_seconds": 96.034798,
+        "total_cost_usd": 8.363759
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T11-24-28.889430Z_run-all_20260502_075110.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/ace-gpt-5.4/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "dd71e765",
+      "run_group_id": "dd71e76542e941a987099e17f19b0ed5",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T15:37:41.296088+00:00",
+      "finished_at": "2026-04-29T16:46:57.243806+00:00"
+    },
+    {
+      "batch_id": "2026-04-29T20-16-43_run-all",
+      "run_group_id": "2026-04-29T20-16-43_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "codebase_adaptation"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T20:16:43.736027+00:00",
+      "finished_at": "2026-04-29T20:29:01.105683+00:00"
+    },
+    {
+      "batch_id": "2026-04-29T20-31-30_run-all",
+      "run_group_id": "2026-04-29T20-31-30_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T20:31:30.409428+00:00",
+      "finished_at": "2026-04-29T21:03:47.277596+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T11-24-28.889430Z_run-all",
+      "run_group_id": "2026-05-02T11-24-28.889430Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T11:24:28.889449+00:00",
+      "finished_at": "2026-05-02T11:51:15.803819+00:00"
+    }
+  ]
+}

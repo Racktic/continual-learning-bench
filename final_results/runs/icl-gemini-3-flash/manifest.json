@@ -1,0 +1,183 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-gemini-3-flash",
+  "run_slug": "icl-gemini-3-flash",
+  "run_group_id": "91f1bcf1ce0f46d5b278401cf5d10a02",
+  "system": "icl",
+  "system_args": [
+    "--system.model",
+    "gemini/gemini-3-flash-preview"
+  ],
+  "started_at": "2026-04-29T05:00:18.288300+00:00",
+  "finished_at": "2026-05-02T13:15:11.927055+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-gemini-3-flash/manifest.json",
+  "final_results_dir": "final_results/runs/icl-gemini-3-flash",
+  "logs_dir": "final_results/runs/icl-gemini-3-flash/logs",
+  "current_batch_id": "2026-05-02T13-09-14.782404Z_run-all",
+  "tasks": [
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T05:00:18.292504+00:00",
+      "finished_at": "2026-04-29T05:18:24.027521+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1085.71,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/9997857ecc01499db6555faa41d292d3/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/exploitable_poker.json.gz",
+      "batch_id": "91f1bcf1",
+      "headline": {
+        "cumulative_gain": -0.849667,
+        "total_reward": 94.84,
+        "mean_latency_seconds": 7.801378,
+        "total_cost_usd": 1.9132158
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3-flash/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T05:00:18.315823+00:00",
+      "finished_at": "2026-04-29T05:07:22.002728+00:00",
+      "exit_code": 0,
+      "duration_seconds": 423.67,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/5a81dc25d8d841d0a862cbf683058a36/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "91f1bcf1",
+      "headline": {
+        "cumulative_gain": 0.147546,
+        "total_reward": 33.03886,
+        "mean_latency_seconds": 3.980857,
+        "total_cost_usd": 0.6809656
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3-flash/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T05:47:29.992549+00:00",
+      "finished_at": "2026-04-29T06:06:39.804808+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1149.83,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/b125a0beac29427e994a78ed2bd7be5f/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/cohort_studies.json.gz",
+      "batch_id": "51144a8c",
+      "headline": {
+        "cumulative_gain": 0.025377,
+        "total_reward": -0.674023,
+        "mean_latency_seconds": 29.986503,
+        "total_cost_usd": 1.2471352
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3-flash/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T06:37:18.052911+00:00",
+      "finished_at": "2026-04-29T07:48:54.731887+00:00",
+      "exit_code": 0,
+      "duration_seconds": 4296.63,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/6b15fafd639342f5960af85f9d9323d8/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/codebase_adaptation.json.gz",
+      "batch_id": "5d7e25b2",
+      "headline": {
+        "cumulative_gain": -0.017368,
+        "total_reward": 7.42,
+        "mean_latency_seconds": 99.255623,
+        "total_cost_usd": 2.754987
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3-flash/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-29T06:37:18.052928+00:00",
+      "finished_at": "2026-04-29T06:41:45.655871+00:00",
+      "exit_code": 0,
+      "duration_seconds": 267.61,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/4e8f5aa82d7548e39d6f00c2068ebce5/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/database_exploration.json.gz",
+      "batch_id": "5d7e25b2",
+      "headline": {
+        "cumulative_gain": 0.287325,
+        "total_reward": 15.0263,
+        "mean_latency_seconds": 4.647896,
+        "total_cost_usd": 0.4166584
+      },
+      "raw_summary_path": "final_results/runs/icl-gemini-3-flash/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T13:09:14.787295+00:00",
+      "finished_at": "2026-05-02T13:15:11.882578+00:00",
+      "exit_code": 0,
+      "duration_seconds": 357.09,
+      "log_path": "final_results/runs/icl-gemini-3-flash/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T13-09-14.782404Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-gemini-3-flash/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-gemini-3-flash/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T13-09-14.782404Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.267512,
+        "total_reward": 8.48084,
+        "mean_latency_seconds": 25.533485,
+        "total_cost_usd": 0.5889334
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T13-09-14.782404Z_run-all_20260502_091506.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-gemini-3-flash/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "5d7e25b2",
+      "run_group_id": "5d7e25b245354f1aaba138f965aa5003",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "codebase_adaptation",
+        "database_exploration"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation",
+        "database_exploration"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-04-29T06:37:18.050058+00:00",
+      "finished_at": "2026-04-29T07:48:54.889948+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T13-09-14.782404Z_run-all",
+      "run_group_id": "2026-05-02T13-09-14.782404Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T13:09:14.782425+00:00",
+      "finished_at": "2026-05-02T13:15:11.927055+00:00"
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "kind": "run_all_manifest",
+  "run_name": "icl-notepad-gpt-5.4",
+  "run_slug": "icl-notepad-gpt-5.4",
+  "run_group_id": "2026-04-30T01-23-51_run-all",
+  "system": "icl_notepad",
+  "system_args": [
+    "--system.model",
+    "gpt-5.4"
+  ],
+  "started_at": "2026-04-30T01:23:51.406509+00:00",
+  "finished_at": "2026-05-02T13:09:09.964396+00:00",
+  "status": "completed",
+  "poll_interval_ms": 2000,
+  "manifest_path": "final_results/runs/icl-notepad-gpt-5.4/manifest.json",
+  "final_results_dir": "final_results/runs/icl-notepad-gpt-5.4",
+  "logs_dir": "final_results/runs/icl-notepad-gpt-5.4/logs",
+  "current_batch_id": "2026-05-02T12-44-53.089395Z_run-all",
+  "tasks": [
+    {
+      "task": "database_exploration",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-30T01:23:51.410042+00:00",
+      "finished_at": "2026-04-30T01:43:17.050038+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1165.64,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/database_exploration.log",
+      "live_manifest_path": "results/database_exploration/live/2026-04-30T01-23-51_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/database_exploration.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/database_exploration.json.gz",
+      "batch_id": "2026-04-30T01-23-51_run-all",
+      "headline": {
+        "cumulative_gain": 0.159336,
+        "total_reward": 12.37336,
+        "mean_latency_seconds": 23.757058,
+        "total_cost_usd": 1.4501506
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/database_exploration.json.gz"
+    },
+    {
+      "task": "blind_spectrum_monitoring",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-30T01:23:51.410076+00:00",
+      "finished_at": "2026-04-30T01:36:37.793518+00:00",
+      "exit_code": 0,
+      "duration_seconds": 766.38,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/blind_spectrum_monitoring.log",
+      "live_manifest_path": "results/blind_spectrum_monitoring/live/2026-04-30T01-23-51_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz",
+      "batch_id": "2026-04-30T01-23-51_run-all",
+      "headline": {
+        "cumulative_gain": 0.135038,
+        "total_reward": 31.91484,
+        "mean_latency_seconds": 7.356661,
+        "total_cost_usd": 1.0235844
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/blind_spectrum_monitoring.json.gz"
+    },
+    {
+      "task": "codebase_adaptation",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-30T06:21:38.727358+00:00",
+      "finished_at": "2026-04-30T07:05:51.641726+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2652.92,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/codebase_adaptation.log",
+      "live_manifest_path": "results/codebase_adaptation/live/2026-04-30T06-21-38_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/codebase_adaptation.json.gz",
+      "batch_id": "2026-04-30T06-21-38_run-all",
+      "headline": {
+        "cumulative_gain": 0.032105,
+        "total_reward": 8.86,
+        "mean_latency_seconds": 103.831085,
+        "total_cost_usd": 3.49421
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/codebase_adaptation.json.gz"
+    },
+    {
+      "task": "exploitable_poker",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-04-30T07:25:40.675554+00:00",
+      "finished_at": "2026-04-30T07:54:55.149442+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1754.48,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/exploitable_poker.log",
+      "live_manifest_path": "results/exploitable_poker/live/2026-04-30T07-25-40_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/exploitable_poker.json.gz",
+      "batch_id": "2026-04-30T07-25-40_run-all",
+      "headline": {
+        "cumulative_gain": 0.002,
+        "total_reward": 81.34,
+        "mean_latency_seconds": 14.981022,
+        "total_cost_usd": 1.5183046
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/exploitable_poker.json.gz"
+    },
+    {
+      "task": "cohort_studies",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-01T12:05:31.354896+00:00",
+      "finished_at": "2026-05-01T12:48:49.085791+00:00",
+      "exit_code": 0,
+      "duration_seconds": 2597.74,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/cohort_studies.log",
+      "live_manifest_path": "results/cohort_studies/live/2026-05-01T12-05-31_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/cohort_studies.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/cohort_studies.json.gz",
+      "batch_id": "2026-05-01T12-05-31_run-all",
+      "headline": {
+        "cumulative_gain": -0.004288,
+        "total_reward": -0.560204,
+        "mean_latency_seconds": 121.891063,
+        "total_cost_usd": 4.4385546
+      },
+      "raw_summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/cohort_studies.json.gz"
+    },
+    {
+      "task": "sales_prediction",
+      "schedule": "default",
+      "status": "ok",
+      "started_at": "2026-05-02T12:44:53.094170+00:00",
+      "finished_at": "2026-05-02T13:09:09.919564+00:00",
+      "exit_code": 0,
+      "duration_seconds": 1456.84,
+      "log_path": "final_results/runs/icl-notepad-gpt-5.4/logs/sales_prediction.log",
+      "live_manifest_path": "results/sales_prediction/live/2026-05-02T12-44-53.089395Z_run-all/manifest.json",
+      "summary_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/sales_prediction.json.gz",
+      "final_artifact_path": "final_results/runs/icl-notepad-gpt-5.4/tasks/sales_prediction.json.gz",
+      "batch_id": "2026-05-02T12-44-53.089395Z_run-all",
+      "headline": {
+        "cumulative_gain": 0.333567,
+        "total_reward": 8.4855,
+        "mean_latency_seconds": 106.001472,
+        "total_cost_usd": 2.3523076
+      },
+      "raw_summary_path": "results/sales_prediction/viewer_artifact_2026-05-02T12-44-53.089395Z_run-all_20260502_090904.json.gz"
+    }
+  ],
+  "task_artifacts": null,
+  "task_artifacts_path": "final_results/runs/icl-notepad-gpt-5.4/task_artifacts.json.gz",
+  "batches": [
+    {
+      "batch_id": "2026-04-30T01-23-51_run-all",
+      "run_group_id": "2026-04-30T01-23-51_run-all",
+      "mode": "initial",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "cohort_studies",
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "database_exploration",
+        "blind_spectrum_monitoring",
+        "sales_prediction"
+      ],
+      "tasks_failed": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-30T01:23:51.406509+00:00",
+      "finished_at": "2026-04-30T02:15:03.643258+00:00"
+    },
+    {
+      "batch_id": "2026-04-30T06-21-38_run-all",
+      "run_group_id": "2026-04-30T06-21-38_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "exploitable_poker",
+        "codebase_adaptation",
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "codebase_adaptation"
+      ],
+      "tasks_failed": [
+        "exploitable_poker",
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-30T06:21:38.723818+00:00",
+      "finished_at": "2026-04-30T07:05:51.791186+00:00"
+    },
+    {
+      "batch_id": "2026-04-30T07-25-40_run-all",
+      "run_group_id": "2026-04-30T07-25-40_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "exploitable_poker",
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "exploitable_poker"
+      ],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-30T07:25:40.672627+00:00",
+      "finished_at": "2026-04-30T08:09:45.003394+00:00"
+    },
+    {
+      "batch_id": "2026-04-30T08-20-23_run-all",
+      "run_group_id": "2026-04-30T08-20-23_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [],
+      "tasks_failed": [
+        "cohort_studies"
+      ],
+      "tasks_skipped": [],
+      "started_at": "2026-04-30T08:20:23.091166+00:00",
+      "finished_at": "2026-04-30T09:02:12.632699+00:00"
+    },
+    {
+      "batch_id": "2026-05-01T12-05-31_run-all",
+      "run_group_id": "2026-05-01T12-05-31_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "cohort_studies"
+      ],
+      "tasks_passed": [
+        "cohort_studies"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-01T12:05:31.352112+00:00",
+      "finished_at": "2026-05-01T12:48:49.179974+00:00"
+    },
+    {
+      "batch_id": "2026-05-02T12-44-53.089395Z_run-all",
+      "run_group_id": "2026-05-02T12-44-53.089395Z_run-all",
+      "mode": "overwrite_task",
+      "tasks_run": [
+        "sales_prediction"
+      ],
+      "tasks_passed": [
+        "sales_prediction"
+      ],
+      "tasks_failed": [],
+      "tasks_skipped": [],
+      "started_at": "2026-05-02T12:44:53.089415+00:00",
+      "finished_at": "2026-05-02T13:09:09.964396+00:00"
+    }
+  ]
+}
