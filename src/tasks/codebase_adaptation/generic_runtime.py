@@ -13,6 +13,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from ..container_backend import (
+    SINGULARITY_BACKEND,
+    get_container_backend,
+    singularity_cleanup_container,
+    singularity_cp,
+    singularity_exec,
+    singularity_start_container,
+)
 from .curation.diff_utils import extract_changed_file_paths, is_test_path
 
 APPLY_PATCH_COMMANDS = (
@@ -213,6 +221,8 @@ def _docker_exec(
     timeout: int = 120,
     docker_executable: str = "docker",
 ) -> subprocess.CompletedProcess[str]:
+    if get_container_backend() == SINGULARITY_BACKEND:
+        return singularity_exec(container_id, command, cwd, timeout=timeout)
     return subprocess.run(
         [
             docker_executable,
@@ -240,6 +250,9 @@ def _docker_cp(
     *,
     docker_executable: str = "docker",
 ) -> None:
+    if get_container_backend() == SINGULARITY_BACKEND:
+        singularity_cp(container_id, local_path, remote_path)
+        return
     subprocess.run(
         [docker_executable, "cp", str(local_path), f"{container_id}:{remote_path}"],
         check=True,
@@ -359,6 +372,8 @@ def _start_generic_container(
     cwd: str,
     docker_executable: str = "docker",
 ) -> str:
+    if get_container_backend() == SINGULARITY_BACKEND:
+        return singularity_start_container(image_name, cwd=cwd)
     container_name = f"clbench-generic-{uuid.uuid4().hex[:8]}"
     result = subprocess.run(
         [
@@ -389,6 +404,9 @@ def _cleanup_container(
     docker_executable: str = "docker",
 ) -> None:
     if not container_id:
+        return
+    if get_container_backend() == SINGULARITY_BACKEND:
+        singularity_cleanup_container(container_id)
         return
     subprocess.run(
         [docker_executable, "rm", "-f", container_id],

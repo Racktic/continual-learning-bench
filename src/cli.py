@@ -695,6 +695,7 @@ _RUN_VALUE_FLAGS = {
     "--max-workers",
     "--run-mode",
     "--run-group-id",
+    "--run-indices",
     "--verbosity",
 }
 
@@ -706,6 +707,8 @@ _RUN_BOOLEAN_FLAGS = {
     "--no-live-server",
     "--verbose-runs",
     "--no-verbose-runs",
+    "--skip-baseline",
+    "--baseline-only",
     "-v",
     "-vv",
 }
@@ -2012,6 +2015,41 @@ Examples:
         help="Emit incremental per-run progress logs during execution.",
     )
     parser.add_argument(
+        "--run-indices",
+        dest="run_indices",
+        type=str,
+        default=None,
+        help=(
+            "Comma-separated run indices to execute (e.g. '2,4'), for crash "
+            "recovery: rerun only the lost runs. Indices keep their canonical "
+            "seeded permutation. Requires --runs (or schedule default) to "
+            "cover the largest index. Default: all runs."
+        ),
+    )
+    parser.add_argument(
+        "--baseline-only",
+        dest="baseline_only",
+        action="store_true",
+        default=False,
+        help=(
+            "Run ONLY the stateless baseline for this task/system pair and "
+            "save its trace (results/<task>/traces/<group>/baseline.json). "
+            "Complements --skip-baseline: compute a system-specific baseline "
+            "separately, e.g. after the fact for gain metrics."
+        ),
+    )
+    parser.add_argument(
+        "--skip-baseline",
+        dest="skip_baseline",
+        action="store_true",
+        default=False,
+        help=(
+            "Skip the stateless baseline phase for this run (gain metrics "
+            "will be unavailable in the artifact; useful when a comparable "
+            "baseline already exists from another run)."
+        ),
+    )
+    parser.add_argument(
         "--live-dashboard",
         action=argparse.BooleanOptionalAction,
         default=True,
@@ -2211,7 +2249,25 @@ Examples:
     run_live_paths: dict[int, Path] = {}
     baseline_trace_data: dict[str, Any] | None = None
     live_viewer_url: str | None = None
-    skip_baseline = not getattr(system_class, "supports_baseline", True)
+    skip_baseline = not getattr(system_class, "supports_baseline", True) or getattr(
+        args, "skip_baseline", False
+    )
+    run_indices: list[int] | None = None
+    raw_run_indices = getattr(args, "run_indices", None)
+    if raw_run_indices:
+        try:
+            run_indices = sorted(
+                {int(part) for part in str(raw_run_indices).split(",") if part.strip()}
+            )
+        except ValueError as exc:
+            raise SystemExit(
+                f"--run-indices must be comma-separated integers, got {raw_run_indices!r}"
+            ) from exc
+    baseline_only = getattr(args, "baseline_only", False)
+    if baseline_only and (getattr(args, "skip_baseline", False) or run_indices):
+        raise SystemExit(
+            "--baseline-only cannot be combined with --skip-baseline or --run-indices"
+        )
 
     if skip_baseline:
         print(
@@ -2233,7 +2289,7 @@ Examples:
             run_index: build_live_trace_path(
                 task_name, run_group_id, f"run_{run_index + 1}"
             )
-            for run_index in range(runs)
+            for run_index in (run_indices if run_indices else range(runs))
         }
         write_live_manifest(
             manifest_path,
@@ -2283,6 +2339,58 @@ Examples:
                     "log_path": str(run_log_path),
                 },
             )
+            if baseline_only:
+                from .runs.baseline import run_baseline
+                from .trace_storage import save_trace
+
+                _, baseline_result, baseline_trace_data, _exec = run_baseline(
+                    task_class=task_class,
+                    task_params=task_params,
+                    system_class=system_class,
+                    system_params=system_params,
+                    max_workers=max_workers,
+                    run_group_id=run_group_id,
+                    system_name=system_name,
+                    task_name=task_name,
+                    baseline_task_params=task_class.baseline_task_params or None,
+                    live_trace_path=baseline_live_path,
+                    verbose=verbose_runs,
+                )
+                baseline_path = save_trace(
+                    baseline_trace_data,
+                    task_name,
+                    output_path=Path(args.output) if args.output else None,
+                )
+                outcomes = baseline_trace_data.get("instance_outcomes") or []
+                rewards = [o.get("reward", 0.0) for o in outcomes]
+                mean_reward = sum(rewards) / len(rewards) if rewards else 0.0
+                print(
+                    f"\nBaseline-only complete: {len(outcomes)} instance(s), "
+                    f"mean reward {mean_reward:.4f}"
+                )
+                for outcome in outcomes:
+                    print(f"  {outcome.get('instance_id')}: {outcome.get('reward')}")
+                print(f"Baseline trace: {baseline_path}")
+                if manifest_path is not None:
+                    write_live_manifest(
+                        manifest_path,
+                        _build_live_manifest_payload(
+                            run_group_id=run_group_id,
+                            status="completed",
+                            phase="completed",
+                            task_name=task_name,
+                            task_params=display_task_params,
+                            system_name=system_name,
+                            system_params=system_params,
+                            root_dir=repo_root,
+                            manifest_path=manifest_path,
+                            task_brief=task_brief,
+                            baseline_trace_path=baseline_live_path,
+                            run_trace_paths=run_live_paths,
+                        ),
+                    )
+                return
+
             baseline_info, task_results, run_trace_data_list = run_benchmark(
                 task_class=task_class,
                 task_params=task_params,

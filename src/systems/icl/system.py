@@ -51,6 +51,7 @@ class ICLSystem(ContinualLearningSystem):
         openai_store: bool = True,
         openai_include_encrypted_reasoning: bool = False,
         anthropic_max_tokens: int | None = None,
+        completion_max_tokens: int | None = None,
     ):
         """
         Initialize ICL baseline system.
@@ -70,6 +71,10 @@ class ICLSystem(ContinualLearningSystem):
                 even when OpenAI server-side state is enabled.
             anthropic_max_tokens: Native Anthropic max_tokens response budget.
                 If omitted, uses the model's known max output token limit.
+            completion_max_tokens: Optional per-call output token cap on the
+                chat-completion path. Recommended for self-hosted
+                OpenAI-compatible endpoints whose default is unbounded
+                generation up to the context limit.
         """
         self._name = name
         self.model = model
@@ -84,6 +89,7 @@ class ICLSystem(ContinualLearningSystem):
             openai_store=openai_store,
             openai_include_encrypted_reasoning=openai_include_encrypted_reasoning,
             anthropic_max_tokens=anthropic_max_tokens,
+            completion_max_tokens=completion_max_tokens,
         )
 
         # Context storage

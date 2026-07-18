@@ -793,3 +793,26 @@ class CLITests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BaselineOnlyFlagTests(unittest.TestCase):
+    def _run_cli(self, extra_args):
+        from src.cli import main
+
+        argv = [
+            "clbench", "run",
+            "--task", "codebase_adaptation",
+            "--system", "icl",
+            "--baseline-only",
+            *extra_args,
+        ]
+        with patch("sys.argv", argv):
+            main()
+
+    def test_baseline_only_conflicts_with_skip_baseline(self):
+        with self.assertRaises(SystemExit):
+            self._run_cli(["--skip-baseline"])
+
+    def test_baseline_only_conflicts_with_run_indices(self):
+        with self.assertRaises(SystemExit):
+            self._run_cli(["--run-indices", "1,2"])

@@ -142,6 +142,7 @@ class ProviderTurnClient:
         openai_store: bool = True,
         openai_include_encrypted_reasoning: bool = False,
         anthropic_max_tokens: int | None = None,
+        completion_max_tokens: int | None = None,
         content_policy_max_retries: int = 5,
         content_policy_retry_delay: float = 2.0,
     ) -> None:
@@ -154,6 +155,7 @@ class ProviderTurnClient:
             model,
             anthropic_max_tokens,
         )
+        self.completion_max_tokens = completion_max_tokens
         self.content_policy_max_retries = max(0, int(content_policy_max_retries))
         self.content_policy_retry_delay = max(0.0, float(content_policy_retry_delay))
         self.state = make_provider_state(
@@ -200,10 +202,21 @@ class ProviderTurnClient:
         messages: list[dict[str, Any]],
         response_schema: type[BaseModel],
     ) -> ProviderTurnResult:
+        # Honor system_prompt on the chat-completion path, matching the
+        # OpenAI (instructions) and Anthropic (system block) paths. Without
+        # this, an explicitly configured system_prompt is silently dropped
+        # for litellm-routed models.
+        llm_messages = messages
+        if self.system_prompt:
+            llm_messages = [
+                {"role": "system", "content": self.system_prompt},
+                *messages,
+            ]
         parsed, usage = completion_with_structured_output(
             model=self.model,
-            messages=messages,
+            messages=llm_messages,
             response_schema=response_schema,
+            max_completion_tokens=self.completion_max_tokens,
         )
         self._mark_visible_messages_sent(messages)
         return ProviderTurnResult(

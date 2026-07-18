@@ -254,6 +254,22 @@ class SalesPredictionTask(ContinualLearningTask):
     def setup(cls, *, force: bool = False) -> None:
         import subprocess
 
+        from ..container_backend import (
+            SINGULARITY_BACKEND,
+            get_container_backend,
+            resolve_singularity_image,
+        )
+
+        if get_container_backend() == SINGULARITY_BACKEND:
+            resolved = resolve_singularity_image(_DOCKER_IMAGE)
+            print(f"Singularity backend: {_DOCKER_IMAGE} -> {resolved}")
+            if resolved.startswith("docker://"):
+                print(
+                    "No pre-built SIF found; the sandbox will be built from "
+                    "the registry on first use (set CLBENCH_SIF_DIR to cache SIFs)."
+                )
+            return
+
         print(f"Pulling Docker image: {_DOCKER_IMAGE}")
         subprocess.run(["docker", "pull", _DOCKER_IMAGE], check=True)
 
@@ -801,9 +817,9 @@ class SalesPredictionTask(ContinualLearningTask):
 
     def _start_container(self) -> None:
         self._cleanup_container()
-        from minisweagent.environments.docker import DockerEnvironment
+        from ..container_backend import create_interactive_environment
 
-        self._env = DockerEnvironment(
+        self._env = create_interactive_environment(
             image=self.docker_image,
             cwd="/app",
             timeout=120,

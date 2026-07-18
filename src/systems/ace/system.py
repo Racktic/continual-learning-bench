@@ -9,6 +9,7 @@ the benchmark's response-only interface:
 from __future__ import annotations
 
 import copy
+import logging
 from dataclasses import dataclass
 import json
 from pathlib import Path
@@ -40,6 +41,8 @@ from .artifacts import ensure_registered as ensure_ace_artifact_exporter_registe
 
 
 ensure_ace_artifact_exporter_registered()
+
+logger = logging.getLogger(__name__)
 
 EMPTY_PLAYBOOK = """## STRATEGIES & INSIGHTS
 
@@ -74,6 +77,19 @@ class EpisodeTurn:
     transition_metadata: Optional[dict[str, Any]] = None
     terminal_observation: Optional[str] = None
     terminal_observation_metadata: Optional[dict[str, Any]] = None
+
+
+def _find_nested_dict_with_keys(obj, expected):
+    """Depth-first search for the inner dict carrying any expected key."""
+    if not isinstance(obj, dict):
+        return None
+    if any(k in obj for k in expected):
+        return obj
+    for v in obj.values():
+        found = _find_nested_dict_with_keys(v, expected)
+        if found is not None:
+            return found
+    return None
 
 
 def _parse_json_object(raw: str) -> dict[str, Any]:
@@ -163,6 +179,7 @@ class ACESystem(ContinualLearningSystem):
         self._latest_response_metadata: Optional[dict[str, Any]] = None
         self._latest_update_details: Optional[dict[str, Any]] = None
         self._last_ingested_feedback_id: Optional[int] = None
+        self._consecutive_generator_fallbacks = 0
 
     def respond(self, query: Query) -> Response:
         self._ensure_initialized()
@@ -172,7 +189,39 @@ class ACESystem(ContinualLearningSystem):
 
         self.interaction_count += 1
 
-        action, generation_info = self._generate_action(query)
+        # Universal fuse: any unexpected failure inside action generation
+        # degrades this turn to a no-op instead of killing the whole run
+        # (tasks refund empty commands). Consecutive-failure guard still
+        # applies via _consecutive_generator_fallbacks.
+        try:
+            action, generation_info = self._generate_action(query)
+        except Exception as exc:  # noqa: BLE001 — deliberate last-resort fuse
+            self._consecutive_generator_fallbacks += 1
+            if self._consecutive_generator_fallbacks > 8:
+                raise
+            logger.warning(
+                "ACE action generation failed (%s: %s); degrading turn to a "
+                "no-op (consecutive fallbacks: %s).",
+                type(exc).__name__,
+                exc,
+                self._consecutive_generator_fallbacks,
+            )
+            fallback_payload = {
+                field_name: (
+                    ""
+                    if field_name == "command"
+                    else "ACE action generation failed this turn; emitting a no-op."
+                )
+                for field_name, field in query.response_schema.model_fields.items()
+                if field.is_required()
+            }
+            action = query.response_schema.model_validate(fallback_payload)
+            generation_info = {
+                "raw_response": f"generation error: {exc}",
+                "bullet_ids": [],
+                "reasoning": "generator_fallback_noop",
+                "repair_attempted": True,
+            }
         self.episode_transcript.append(
             EpisodeTurn(
                 prompt=query.prompt,
@@ -304,6 +353,7 @@ class ACESystem(ContinualLearningSystem):
             action, reasoning = self._parse_generator_response(
                 raw_response, query.response_schema
             )
+            self._consecutive_generator_fallbacks = 0
             return action, {
                 "raw_response": raw_response,
                 "bullet_ids": bullet_ids,
@@ -311,30 +361,59 @@ class ACESystem(ContinualLearningSystem):
                 "repair_attempted": False,
             }
         except (ValueError, ValidationError) as exc:
-            repaired_response = self._repair_generator_response(
-                query=query,
-                schema_json=schema_json,
-                base_context=base_context,
-                raw_response=raw_response,
-                validation_error=str(exc),
-            )
-            repaired_bullet_ids = bullet_ids
-            try:
-                action, reasoning = self._parse_generator_response(
-                    repaired_response, query.response_schema
+            last_error = str(exc)
+            repaired_response = raw_response
+            for _repair_attempt in range(3):
+                repaired_response = self._repair_generator_response(
+                    query=query,
+                    schema_json=schema_json,
+                    base_context=base_context,
+                    raw_response=repaired_response,
+                    validation_error=last_error,
                 )
-            except (ValueError, ValidationError) as repair_exc:
-                raw_preview = raw_response.strip().replace("\n", "\\n")[:400]
-                repair_preview = repaired_response.strip().replace("\n", "\\n")[:400]
+                try:
+                    action, reasoning = self._parse_generator_response(
+                        repaired_response, query.response_schema
+                    )
+                except (ValueError, ValidationError) as repair_exc:
+                    last_error = str(repair_exc)
+                    continue
+                self._consecutive_generator_fallbacks = 0
+                return action, {
+                    "raw_response": repaired_response,
+                    "bullet_ids": bullet_ids,
+                    "reasoning": reasoning,
+                    "repair_attempted": True,
+                }
+            # Skip-fallback: degrade this turn to a no-op instead of killing
+            # the run. Tasks refund empty commands, so this is a free retry.
+            self._consecutive_generator_fallbacks += 1
+            if self._consecutive_generator_fallbacks > 8:
                 raise ValueError(
-                    "Expected valid JSON from the ACE generator after repair. "
-                    f"Initial response preview: {raw_preview!r}. "
-                    f"Repair response preview: {repair_preview!r}."
-                ) from repair_exc
+                    "ACE generator produced unparseable output for "
+                    f"{self._consecutive_generator_fallbacks} consecutive "
+                    f"turns; giving up. Last error: {last_error}"
+                )
+            logger.warning(
+                "ACE generator output unparseable after 3 repairs; degrading "
+                "turn to a no-op (consecutive fallbacks: %s). Last error: %s",
+                self._consecutive_generator_fallbacks,
+                last_error,
+            )
+            fallback_payload = {}
+            for field_name, field in query.response_schema.model_fields.items():
+                if field.is_required():
+                    fallback_payload[field_name] = (
+                        "ACE generator output could not be parsed this turn; "
+                        "emitting a no-op."
+                        if field_name != "command"
+                        else ""
+                    )
+            action = query.response_schema.model_validate(fallback_payload)
             return action, {
                 "raw_response": repaired_response,
-                "bullet_ids": repaired_bullet_ids,
-                "reasoning": reasoning,
+                "bullet_ids": [],
+                "reasoning": "generator_fallback_noop",
                 "repair_attempted": True,
             }
 
@@ -471,22 +550,36 @@ class ACESystem(ContinualLearningSystem):
         playbook_before = self.playbook
         episode_turn_count = len(self.episode_transcript)
 
-        (
-            reflection_content,
-            bullet_tags,
-            reflection_call_info,
-        ) = self._reflector.reflect(
-            question=reflection_question,
-            reasoning_trace=reflection_trace,
-            predicted_answer=reflection_predicted_answer,
-            ground_truth=None,
-            environment_feedback=observation.content,
-            bullets_used=bullets_used,
-            use_ground_truth=False,
-            use_json_mode=True,
-            call_id=f"bench_update_{self.update_count + 1}_reflect",
-            log_dir=None,
-        )
+        try:
+            (
+                reflection_content,
+                bullet_tags,
+                reflection_call_info,
+            ) = self._reflector.reflect(
+                question=reflection_question,
+                reasoning_trace=reflection_trace,
+                predicted_answer=reflection_predicted_answer,
+                ground_truth=None,
+                environment_feedback=observation.content,
+                bullets_used=bullets_used,
+                use_ground_truth=False,
+                use_json_mode=True,
+                call_id=f"bench_update_{self.update_count + 1}_reflect",
+                log_dir=None,
+            )
+        except Exception as exc:  # noqa: BLE001 — skip this write, keep playbook
+            logger.warning(
+                "ACE reflection failed at update %s; skipping this playbook "
+                "write. Error: %s",
+                self.update_count + 1,
+                exc,
+            )
+            self.update_count += 1
+            self._last_update_reflection_ran = False
+            self._last_update_curation_ran = False
+            self._last_update_summary = f"Reflection skipped after error: {exc}"
+            self.episode_transcript = []
+            return
         self._record_call_info_usage(reflection_call_info)
         self._last_update_reflection_ran = True
 
@@ -498,28 +591,41 @@ class ACESystem(ContinualLearningSystem):
         curation_ran = False
         curator_operations: list[dict[str, Any]] = []
         if self.update_count % self.curate_every_n_updates == 0:
-            (
-                self.playbook,
-                self.next_global_id,
-                curator_operations,
-                curator_call_info,
-            ) = self._curator.curate(
-                current_playbook=self.playbook,
-                recent_reflection=reflection_content,
-                question_context=self._format_question_context(),
-                current_step=self.update_count,
-                total_samples=self.update_count,
-                token_budget=80000,
-                playbook_stats=get_playbook_stats(self.playbook),
-                use_ground_truth=False,
-                use_json_mode=True,
-                call_id=f"bench_update_{self.update_count}_curate",
-                log_dir=None,
-                next_global_id=self.next_global_id,
-            )
-            self._record_call_info_usage(curator_call_info)
-            self.next_global_id = get_next_global_id(self.playbook)
-            curation_ran = True
+            try:
+                (
+                    self.playbook,
+                    self.next_global_id,
+                    curator_operations,
+                    curator_call_info,
+                ) = self._curator.curate(
+                    current_playbook=self.playbook,
+                    recent_reflection=reflection_content,
+                    question_context=self._format_question_context(),
+                    current_step=self.update_count,
+                    total_samples=self.update_count,
+                    token_budget=80000,
+                    playbook_stats=get_playbook_stats(self.playbook),
+                    use_ground_truth=False,
+                    use_json_mode=True,
+                    call_id=f"bench_update_{self.update_count}_curate",
+                    log_dir=None,
+                    next_global_id=self.next_global_id,
+                )
+            except Exception as exc:  # noqa: BLE001 — skip write, keep playbook
+                logger.warning(
+                    "ACE curation failed at update %s; keeping previous "
+                    "playbook. Error: %s",
+                    self.update_count,
+                    exc,
+                )
+                self.playbook = (
+                    playbook_before if bullet_tags is None else self.playbook
+                )
+                curator_operations = []
+            else:
+                self._record_call_info_usage(curator_call_info)
+                self.next_global_id = get_next_global_id(self.playbook)
+                curation_ran = True
 
         self._last_update_curation_ran = curation_ran
         self._last_update_summary = (
@@ -552,7 +658,7 @@ class ACESystem(ContinualLearningSystem):
         self, raw_response: str, response_schema: type[BaseModel]
     ) -> tuple[BaseModel, str]:
         payload = _parse_json_object(raw_response)
-        reasoning = str(payload.get("reasoning", ""))
+        reasoning = str(payload.get("reasoning", payload.get("thought", "")))
         final_answer = payload.get("final_answer")
         if final_answer is None:
             raise ValueError("Generator response did not include `final_answer`.")
@@ -560,16 +666,36 @@ class ACESystem(ContinualLearningSystem):
         if isinstance(final_answer, str):
             try:
                 action = response_schema.model_validate_json(final_answer)
+                return action, reasoning
             except (ValidationError, ValueError):
                 try:
-                    parsed_final_answer = json.loads(final_answer)
+                    final_answer = json.loads(final_answer)
                 except json.JSONDecodeError as exc:
                     raise ValueError(
                         "Generator `final_answer` was not valid JSON."
                     ) from exc
-                action = response_schema.model_validate(parsed_final_answer)
-        else:
-            action = response_schema.model_validate(final_answer)
+
+        if isinstance(final_answer, dict):
+            schema_fields = set(response_schema.model_fields)
+            # Models sometimes echo the schema structure itself, nesting the
+            # real values under e.g. `properties`. Descend to the innermost
+            # dict that actually carries the schema fields.
+            if not (schema_fields & set(final_answer)):
+                nested = _find_nested_dict_with_keys(final_answer, schema_fields)
+                if nested is not None:
+                    final_answer = nested
+            # Models frequently hoist reasoning-like required fields (e.g. the
+            # task schema's `thought`) to the top level next to `reasoning`.
+            # Backfill missing schema fields from same-named top-level keys,
+            # with `reasoning` as a fallback for a missing `thought`.
+            for field_name in schema_fields:
+                if field_name in final_answer:
+                    continue
+                if field_name in payload:
+                    final_answer[field_name] = payload[field_name]
+                elif field_name == "thought" and reasoning:
+                    final_answer[field_name] = reasoning
+        action = response_schema.model_validate(final_answer)
 
         return action, reasoning
 
@@ -745,13 +871,21 @@ class ACESystem(ContinualLearningSystem):
                 count += 1
         return count
 
-    def _filter_known_bullet_ids(self, bullet_ids: list[str]) -> list[str]:
+    def _filter_known_bullet_ids(self, bullet_ids: list[Any]) -> list[str]:
         known_ids = {
             parsed["id"]
             for line in self.playbook.splitlines()
             if (parsed := parse_playbook_line(line))
         }
-        return [bullet_id for bullet_id in bullet_ids if bullet_id in known_ids]
+        # Models occasionally emit nested lists or non-string ids; flatten one
+        # level and keep strings only before the set-membership check.
+        flat: list[str] = []
+        for bullet_id in bullet_ids or []:
+            if isinstance(bullet_id, str):
+                flat.append(bullet_id)
+            elif isinstance(bullet_id, list):
+                flat.extend(item for item in bullet_id if isinstance(item, str))
+        return [bullet_id for bullet_id in flat if bullet_id in known_ids]
 
     def _copy_metadata(
         self, metadata: Optional[dict[str, Any]]

@@ -785,3 +785,61 @@ class ACESystemTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_parse_generator_response_backfills_hoisted_fields():
+    """Models often hoist `thought` to the top level; parser must backfill."""
+    from pydantic import BaseModel
+
+    from src.systems.ace.system import ACESystem
+
+    class _Action(BaseModel):
+        thought: str
+        command: str
+
+    parse = ACESystem._parse_generator_response
+
+    # thought missing in final_answer, reasoning present at top level
+    raw = '{"reasoning": "check escape logic", "bullet_ids": [], "final_answer": {"command": "grep -n escape f.py"}}'
+    action, reasoning = parse(object.__new__(ACESystem), raw, _Action)
+    assert action.command == "grep -n escape f.py"
+    assert action.thought == "check escape logic"
+
+    # top-level uses `thought` instead of `reasoning`
+    raw2 = '{"thought": "verify logic", "final_answer": {"command": "ls"}}'
+    action2, reasoning2 = parse(object.__new__(ACESystem), raw2, _Action)
+    assert action2.thought == "verify logic"
+    assert reasoning2 == "verify logic"
+
+
+def test_parse_generator_response_unwraps_schema_echo():
+    """Models sometimes echo the schema structure, nesting values under `properties`."""
+    from pydantic import BaseModel
+
+    from src.systems.ace.system import ACESystem
+
+    class _Action(BaseModel):
+        thought: str
+        command: str
+
+    raw = (
+        '{"reasoning": "r", "bullet_ids": [], "final_answer": {'
+        '"description": "Structured response for codebase adaptation task.", '
+        '"properties": {"thought": "check yaml", "command": "cat _yaml.py"}}}'
+    )
+    action, _ = ACESystem._parse_generator_response(
+        object.__new__(ACESystem), raw, _Action
+    )
+    assert action.command == "cat _yaml.py"
+    assert action.thought == "check yaml"
+
+
+def test_filter_known_bullet_ids_tolerates_nested_lists():
+    from src.systems.ace.system import ACESystem
+
+    system = object.__new__(ACESystem)
+    system.playbook = "[sai-00001] helpful=0 harmful=0 :: keep baseline clean"
+    result = ACESystem._filter_known_bullet_ids(
+        system, ["sai-00001", ["sai-00001", 3], None, 7]
+    )
+    assert result == ["sai-00001", "sai-00001"]

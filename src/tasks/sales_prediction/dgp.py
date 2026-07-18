@@ -13,11 +13,14 @@ pooling valuable.
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 # ── Semantic type clusters ────────────────────────────────────────────────
@@ -134,10 +137,12 @@ class HierarchicalPanelConfig:
     def from_dict(cls, d: dict[str, Any]) -> "HierarchicalPanelConfig":
         kw = {}
         for k, v in d.items():
-            if isinstance(v, list) and k in cls.__dataclass_fields__:
-                kw[k] = tuple(v)
-            else:
-                kw[k] = v
+            if k not in cls.__dataclass_fields__:
+                # Schedules may carry keys from older DGP versions (e.g.
+                # global_shock_count); ignore them instead of crashing.
+                logger.warning("Ignoring unknown HierarchicalPanelConfig key %r", k)
+                continue
+            kw[k] = tuple(v) if isinstance(v, list) else v
         return cls(**kw)
 
 

@@ -75,17 +75,41 @@ def run_benchmark_runs(
     run_mode: RunMode = RunMode.PERMUTE,
     verbose_runs: bool = False,
     live_trace_paths: Optional[dict[int, Path]] = None,
+    run_indices: Optional[list[int]] = None,
 ) -> tuple[TaskResults, list[dict[str, Any]]]:
-    """Orchestrate one or more independent benchmark runs, optionally in parallel."""
+    """Orchestrate one or more independent benchmark runs, optionally in parallel.
+
+    ``run_indices`` optionally restricts execution to a subset of run indices
+    (crash recovery: rerun only the runs that were lost). Indices keep their
+    canonical seeded permutation, so a rerun of index k reproduces the same
+    instance order as the original run k. Default (None) preserves the
+    historical behavior of running ``range(runs)``.
+    """
     if run_group_id is None:
         run_group_id = new_timestamp_run_id()
 
-    can_parallelize = task_accepts_parallel_execution(task_class, system_class)
-    run_results: list[Optional[RunSuccess]] = [None] * runs
-    effective_workers = min(max_workers, runs) if can_parallelize else 1
+    if run_indices:
+        selected_indices = sorted({int(i) for i in run_indices})
+        if selected_indices[0] < 0 or selected_indices[-1] >= runs:
+            raise ValueError(
+                f"run_indices must be within [0, {runs}); got {selected_indices}"
+            )
+    else:
+        selected_indices = list(range(runs))
 
+    can_parallelize = task_accepts_parallel_execution(task_class, system_class)
+    run_results: list[Optional[RunSuccess]] = [None] * (selected_indices[-1] + 1)
+    effective_workers = (
+        min(max_workers, len(selected_indices)) if can_parallelize else 1
+    )
+
+    run_label = (
+        f"{len(selected_indices)} run(s)"
+        if not run_indices
+        else f"run indices {selected_indices} (of {runs})"
+    )
     print(
-        f"Starting {runs} run(s) with max workers {effective_workers} "
+        f"Starting {run_label} with max workers {effective_workers} "
         f"[group {run_group_id}, mode={run_mode.value}]"
     )
     logger.info(
@@ -102,8 +126,8 @@ def run_benchmark_runs(
         },
     )
 
-    if runs == 1 or effective_workers == 1:
-        for i in range(runs):
+    if len(selected_indices) == 1 or effective_workers == 1:
+        for i in selected_indices:
             try:
                 with bind_logging_context(run_index=i, phase="run"):
                     logger.info("run.submitted")
@@ -169,11 +193,11 @@ def run_benchmark_runs(
                         None if live_trace_paths is None else live_trace_paths.get(i)
                     ),
                 ): i
-                for i in range(runs)
+                for i in selected_indices
             }
 
             if verbose_runs:
-                for i in range(runs):
+                for i in selected_indices:
                     print(f"  Run {i + 1}/{runs} starting")
 
             drain_run_futures(
@@ -187,7 +211,7 @@ def run_benchmark_runs(
     task_results_list: list[TaskResult] = []
     trace_data_list: list[dict[str, Any]] = []
     execution_summaries: list[dict[str, Any]] = []
-    for entry in run_results:
+    for entry in (run_results[i] for i in selected_indices):
         assert entry is not None
         _, result, trace_data, execution_summary = entry
         task_results_list.append(result)
@@ -224,6 +248,7 @@ def run_benchmark(
     baseline_live_path: Optional[Path] = None,
     live_trace_paths: Optional[dict[int, Path]] = None,
     output_path: Optional[Path] = None,
+    run_indices: Optional[list[int]] = None,
 ) -> tuple[
     Optional[tuple[Optional[int], TaskResult, dict[str, Any], dict[str, Any]]],
     TaskResults,
@@ -291,6 +316,7 @@ def run_benchmark(
             verbose_runs=verbose_runs,
             live_trace_paths=live_trace_paths,
             output_path=output_path,
+            run_indices=run_indices,
         )
         logger.info("finished", extra={"path": "sequential"})
         return baseline_info, task_results, run_trace_data
@@ -318,7 +344,17 @@ def run_benchmark(
         None
     ] * num_baseline_instances
     blocked_baseline_instances: list[dict[str, Any]] = []
-    run_results: list[Optional[RunSuccess]] = [None] * runs
+    if run_indices:
+        selected_run_indices = sorted({int(i) for i in run_indices})
+        if selected_run_indices[0] < 0 or selected_run_indices[-1] >= runs:
+            raise ValueError(
+                f"run_indices must be within [0, {runs}); got {selected_run_indices}"
+            )
+    else:
+        selected_run_indices = list(range(runs))
+    run_results: list[Optional[RunSuccess]] = [None] * (
+        selected_run_indices[-1] + 1
+    )
 
     baseline_start_time = datetime.now().isoformat()
 
@@ -362,7 +398,7 @@ def run_benchmark(
                     None if live_trace_paths is None else live_trace_paths.get(i)
                 ),
             ): i
-            for i in range(runs)
+            for i in selected_run_indices
         }
         # Submit baseline instances after; they are fully parallel and can fill
         # whatever worker slots remain once the rollouts have started.
@@ -460,7 +496,7 @@ def run_benchmark(
     task_results_list: list[TaskResult] = []
     run_trace_data_list: list[dict[str, Any]] = []
     execution_summaries: list[dict[str, Any]] = []
-    for entry in run_results:
+    for entry in (run_results[i] for i in selected_run_indices):
         assert entry is not None
         _, result, trace_data, execution_summary = entry
         task_results_list.append(result)

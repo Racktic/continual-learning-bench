@@ -242,6 +242,7 @@ def completion_with_structured_output(
     model: str,
     messages: list[dict],
     response_schema: type[BaseModel],
+    max_completion_tokens: int | None = None,
 ) -> tuple[BaseModel, UsageEvent]:
     """
     Call LLM and parse response into a Pydantic model.
@@ -249,6 +250,11 @@ def completion_with_structured_output(
     If the model supports response_format, uses it directly.
     Otherwise, injects schema instructions into the prompt and parses the response.
     Retries automatically on transient network/server errors.
+
+    Args:
+        max_completion_tokens: Optional per-call output token cap. Useful for
+            self-hosted OpenAI-compatible endpoints whose default is unbounded
+            generation up to the context limit.
 
     Returns:
         Parsed Pydantic model instance.
@@ -267,6 +273,8 @@ def completion_with_structured_output(
             model,
         )
         completion_kwargs = _prompt_based_kwargs(model, messages, response_schema)
+    if max_completion_tokens is not None:
+        completion_kwargs["max_tokens"] = int(max_completion_tokens)
 
     refusal_retry_used = False
     for attempt in range(_MAX_RETRIES + 1):

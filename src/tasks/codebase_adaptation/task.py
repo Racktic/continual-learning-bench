@@ -112,6 +112,10 @@ class CodebaseAdaptationTask(ContinualLearningTask):
 
     r_max = 1.0
     has_setup = True
+    # Task family name: used for the registered task name and to locate this
+    # task's schedules/ and variants/ JSON. Subclasses (e.g. SweBenchCLTask)
+    # override it so schedule/variant lookups resolve to their own directory.
+    TASK_FAMILY = "codebase_adaptation"
 
     @classmethod
     def setup(cls, *, force: bool = False) -> None:
@@ -137,6 +141,33 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         if not dataset_path.exists():
             print(f"Dataset not found at {dataset_path}, skipping Docker pre-pull.")
             return
+
+        from ..container_backend import (
+            SINGULARITY_BACKEND,
+            get_container_backend,
+            resolve_singularity_image,
+        )
+
+        if get_container_backend() == SINGULARITY_BACKEND:
+            images = sorted(
+                {
+                    json.loads(line)["image_name"]
+                    for line in dataset_path.read_text().splitlines()
+                    if line.strip()
+                    and "image_name" in line
+                    and json.loads(line).get("instance_id") in scheduled_ids
+                }
+            )
+            for image in images:
+                resolved = resolve_singularity_image(image)
+                print(f"Singularity backend: {image} -> {resolved}")
+                if resolved.startswith("docker://"):
+                    print(
+                        "  No pre-built SIF found; sandboxes will build from the "
+                        "registry on first use (set CLBENCH_SIF_DIR to cache SIFs)."
+                    )
+            return
+
         images = sorted(
             {
                 json.loads(line)["image_name"]
@@ -179,9 +210,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
             )
 
         if self.schedule:
-            self._schedule_spec = get_task_schedule(
-                "codebase_adaptation", self.schedule
-            )
+            self._schedule_spec = get_task_schedule(self.TASK_FAMILY, self.schedule)
             if not self._schedule_spec.stages:
                 raise ValueError(
                     f"Schedule '{self.schedule}' must define at least one stage."
@@ -197,7 +226,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
                 stage_variant_spec: TaskVariantSpec | None = None
                 if stage.variant is not None:
                     stage_variant_spec = get_task_variant(
-                        "codebase_adaptation", stage.variant
+                        self.TASK_FAMILY, stage.variant
                     )
                     stage_defaults = stage_variant_spec.defaults
                     rollout_dataset_path = str(
@@ -251,7 +280,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
                 self.variant_display_name = first_stage.get("variant_display_name")
                 self.variant_repo = first_stage.get("repo")
         elif self.variant:
-            self.variant_spec = get_task_variant("codebase_adaptation", self.variant)
+            self.variant_spec = get_task_variant(self.TASK_FAMILY, self.variant)
             validate_variant_defaults(
                 self.variant_spec,
                 {
@@ -379,6 +408,20 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         self._update_rollout_context_for_issue(self.current_issue_idx, announce=False)
         self._start_container()
 
+    def _repo_test_hint(self, repo: str) -> str | None:
+        """Optional one-line test-runner hint per repo (subclasses may override).
+
+        Base task (tablib/tenacity) has pytest available, so no hint is needed.
+        """
+        return None
+
+    def _extra_singularity_exec_args(self, repo: str) -> list[str]:
+        """Per-repo extra container launch args (subclasses may override).
+
+        Base task adds nothing, so every instance launches with the default args.
+        """
+        return []
+
     def build_current_query(self) -> Query:
         return self._make_issue_query()
 
@@ -410,7 +453,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
             "command": command,
         }
 
-        if self.current_steps >= self.max_steps_per_issue:
+        if self.current_steps > self.max_steps_per_issue:
             return self._handle_timeout(instance, trace_entry)
 
         result = self._execute(command)
@@ -422,6 +465,8 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         trace_entry["is_submit"] = False
         trace_entry["output"] = result["output"][:2000]
         trace_entry["returncode"] = result["returncode"]
+        if self.current_steps >= self.max_steps_per_issue:
+            return self._handle_timeout(instance, trace_entry)
         self.interaction_trace.append(trace_entry)
 
         templates = _load_mswea_templates()
@@ -576,7 +621,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
 
     @property
     def name(self) -> str:
-        return "codebase_adaptation"
+        return self.TASK_FAMILY
 
     @property
     def description(self) -> str:
@@ -714,13 +759,14 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         """Start a Docker container and initialize the current generic-PR issue."""
         self._cleanup_container()
         instance = self.instances[self.current_issue_idx]
-        from minisweagent.environments.docker import DockerEnvironment
+        from ..container_backend import create_interactive_environment
 
-        self._env = DockerEnvironment(
+        self._env = create_interactive_environment(
             image=instance.image_name,
             cwd=instance_cwd(instance.raw_data),
             timeout=120,
             run_args=["--rm", "--network=none"],
+            extra_exec_args=self._extra_singularity_exec_args(instance.repo),
         )
         logger.info(
             f"Started container for issue {self.current_issue_idx + 1}/{len(self.instances)}: "
@@ -737,12 +783,17 @@ class CodebaseAdaptationTask(ContinualLearningTask):
     def _initialize_generic_pr_workspace(self, instance: TaskInstance) -> None:
         """Initialize a real-PR task from base_commit plus test_patch."""
 
-        if self._env is None or not getattr(self._env, "container_id", None):
+        from ..container_backend import environment_container_ref
+
+        container_ref = (
+            environment_container_ref(self._env) if self._env is not None else None
+        )
+        if not container_ref:
             raise RuntimeError("No active container available for generic PR init")
 
         try:
             initialize_generic_pr_container(
-                self._env.container_id,
+                container_ref,
                 instance.raw_data,
             )
             logger.info(f"Initialized generic PR workspace for {instance.instance_id}")
@@ -808,10 +859,7 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         model_patch = self._extract_patch()
         trace_entry["model_patch"] = model_patch[:5000] if model_patch else ""
 
-        result = evaluate_submission(
-            model_patch=model_patch,
-            instance=instance.raw_data,
-        )
+        result = self._evaluate_submission(model_patch, instance)
 
         trace_entry["eval_result"] = {
             "success": result.success,
@@ -833,6 +881,12 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         instance_outcome = self._build_issue_instance_outcome(issue_record)
 
         return self._advance_to_next_issue(result, instance_outcome)
+
+    def _evaluate_submission(self, model_patch: str, instance: "TaskInstance"):
+        """Judge the model's patch. Overridable so subclasses (e.g. SweBenchCLTask)
+        can swap in a different grader; the default is codebase_adaptation's
+        returncode-based generic-PR evaluation."""
+        return evaluate_submission(model_patch=model_patch, instance=instance.raw_data)
 
     def _handle_timeout(
         self, instance: TaskInstance, trace_entry: dict
@@ -945,6 +999,9 @@ class CodebaseAdaptationTask(ContinualLearningTask):
             f"--- Issue {self.current_issue_idx + 1}/{len(self.instances)} ---\n"
             f"Repository: {instance.repo}\n"
         )
+        test_hint = self._repo_test_hint(instance.repo)
+        if test_hint:
+            prompt += f"{test_hint}\n"
         brief = self.get_agent_brief()
         if brief is not None:
             prompt = f"{format_task_agent_brief(brief)}\n\n{prompt}"

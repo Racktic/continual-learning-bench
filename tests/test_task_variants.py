@@ -6,7 +6,10 @@ from unittest.mock import patch
 
 from src.interface import Query, Response
 from src.cli import main
-from src.tasks.codebase_adaptation.task import CodebaseAdaptationTask
+from src.tasks.codebase_adaptation.task import (
+    BashCommandResponse,
+    CodebaseAdaptationTask,
+)
 from src.tasks.codebase_adaptation.task_loader import load_tasks
 from src.tasks.codebase_adaptation.task_loader import TaskInstance
 from src.tasks.database_exploration.task import _build_schema_drift_question_sequence
@@ -288,6 +291,86 @@ class TaskVariantsTests(unittest.TestCase):
         )
         self.assertNotIn("issue_id", followup_query.metadata)
         self.assertNotIn("variant_id", followup_query.metadata)
+
+    def test_codebase_executes_the_final_budgeted_command(self):
+        task = object.__new__(CodebaseAdaptationTask)
+        task.total_interactions = 0
+        task.current_steps = 0
+        task.max_steps_per_issue = 1
+        task.current_issue_idx = 0
+        task.instances = [
+            TaskInstance(
+                instance_id="example__repo.123abc",
+                repo="example/repo",
+                patch="",
+                fail_to_pass=[],
+                pass_to_pass=[],
+                image_name="example:latest",
+                problem_statement="Fix the failing behavior.",
+            )
+        ]
+        timeout_result = object()
+
+        with (
+            patch.object(
+                task,
+                "_execute",
+                return_value={"output": "ok", "returncode": 0},
+            ) as execute,
+            patch.object(
+                task, "_handle_timeout", return_value=timeout_result
+            ) as timeout,
+        ):
+            result = task.step(
+                Response(
+                    action=BashCommandResponse(
+                        thought="Use the only available command.",
+                        command="echo ok",
+                    )
+                )
+            )
+
+        execute.assert_called_once_with("echo ok")
+        timeout.assert_called_once()
+        self.assertEqual(task.current_steps, 1)
+        self.assertIs(result, timeout_result)
+
+    def test_codebase_accepts_submission_on_final_budgeted_command(self):
+        task = object.__new__(CodebaseAdaptationTask)
+        task.total_interactions = 0
+        task.current_steps = 0
+        task.max_steps_per_issue = 1
+        task.current_issue_idx = 0
+        task.instances = [
+            TaskInstance(
+                instance_id="example__repo.123abc",
+                repo="example/repo",
+                patch="",
+                fail_to_pass=[],
+                pass_to_pass=[],
+                image_name="example:latest",
+                problem_statement="Fix the failing behavior.",
+            )
+        ]
+        submit_result = object()
+
+        with (
+            patch.object(task, "_execute", return_value={"submitted": True}) as execute,
+            patch.object(task, "_handle_submit", return_value=submit_result) as submit,
+        ):
+            result = task.step(
+                Response(
+                    action=BashCommandResponse(
+                        thought="Submit on the final available command.",
+                        command="echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT",
+                    )
+                )
+            )
+
+        execute.assert_called_once_with("echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT")
+        submit.assert_called_once()
+        self.assertEqual(task.current_steps, 1)
+        self.assertIs(result, submit_result)
 
     def test_codebase_variant_rejects_conflicting_fixed_overrides(self):
         with self.assertRaises(ValueError):

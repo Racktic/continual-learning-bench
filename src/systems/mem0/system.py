@@ -70,6 +70,8 @@ class Mem0VectorSystem(ContinualLearningSystem):
         model: str = "openai/gpt-5",
         extraction_model: str = "",
         embedding_model: str = "text-embedding-3-small",
+        embedding_base_url: str = "",
+        assume_function_calling: bool = False,
         system_prompt: str = "",
         top_k: int = 10,
         user_id: str = "benchmark_user",
@@ -80,6 +82,16 @@ class Mem0VectorSystem(ContinualLearningSystem):
             extraction_model: LiteLLM model for mem0 memory extraction
                 (defaults to model).
             embedding_model: Embedding model for mem0 vector store.
+            embedding_base_url: Explicit base URL for the embedder. Useful when
+                OPENAI_API_BASE points a locally served chat model (mem0's
+                OpenAI embedder falls back to that env var, which would send
+                embedding calls to a server that cannot embed).
+            assume_function_calling: Register the extraction model as
+                function-calling-capable in litellm when litellm does not know
+                it. Required for self-hosted models (mem0's extraction aborts
+                on litellm's static capability check otherwise); the serving
+                endpoint must actually support tool calls (e.g. sglang with
+                --tool-call-parser).
             system_prompt: Additional system prompt content.
             top_k: Number of memories to retrieve per query.
             user_id: User scope for mem0 memory operations.
@@ -87,6 +99,21 @@ class Mem0VectorSystem(ContinualLearningSystem):
         self.model = model
         self.extraction_model = extraction_model or model
         self.embedding_model = embedding_model
+        self.embedding_base_url = embedding_base_url
+        if assume_function_calling:
+            for m in {self.model, self.extraction_model}:
+                try:
+                    litellm.get_model_info(m)
+                except Exception:
+                    litellm.register_model(
+                        {
+                            m: {
+                                "litellm_provider": "openai",
+                                "mode": "chat",
+                                "supports_function_calling": True,
+                            }
+                        }
+                    )
         self.user_system_prompt = system_prompt
         self.top_k = top_k
         self.user_id = user_id
@@ -130,6 +157,11 @@ class Mem0VectorSystem(ContinualLearningSystem):
                 "provider": "openai",
                 "config": {
                     "model": self.embedding_model,
+                    **(
+                        {"openai_base_url": self.embedding_base_url}
+                        if self.embedding_base_url
+                        else {}
+                    ),
                 },
             },
             "vector_store": {
@@ -283,7 +315,12 @@ class Mem0VectorSystem(ContinualLearningSystem):
 
     def get_run_artifacts(self) -> dict[str, Any] | None:
         try:
-            all_memories = self._mem0.get_all(user_id=self.user_id)
+            # This mem0 version's Memory.get_all is keyword-only and expects a
+            # ``filters`` dict (passing user_id= directly is silently ignored
+            # and yields an empty export).
+            all_memories = self._mem0.get_all(
+                filters={"user_id": self.user_id}, top_k=100000
+            )
             results = all_memories.get("results", [])
             return {
                 "artifact_type": "mem0",

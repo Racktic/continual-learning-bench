@@ -380,6 +380,269 @@
             height: 320px;
         }
 
+        .trace-controls {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 18px;
+        }
+
+        .trace-control-card {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 247, 241, 0.88));
+            padding: 16px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .trace-control-card h3 {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .control-row {
+            display: grid;
+            gap: 6px;
+        }
+
+        .control-row label {
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        select,
+        input[type="search"] {
+            width: 100%;
+            min-height: 38px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fffdf9;
+            color: var(--ink);
+            font: inherit;
+            padding: 8px 10px;
+        }
+
+        .trace-filter-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: minmax(220px, 1.1fr) minmax(220px, 0.9fr);
+            margin-bottom: 18px;
+        }
+
+        .trace-summary-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            margin-bottom: 18px;
+        }
+
+        .trace-pill {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 253, 249, 0.78);
+            padding: 12px;
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .trace-pill strong {
+            display: block;
+            margin-top: 4px;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+
+        .trace-pair-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .trace-instance {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255, 253, 249, 0.72);
+            overflow: hidden;
+        }
+
+        .trace-instance > summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 16px;
+        }
+
+        .trace-instance > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .trace-instance-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .trace-instance-title {
+            font-weight: 700;
+            min-width: 0;
+        }
+
+        .trace-instance-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .trace-side {
+            min-width: 0;
+            padding: 16px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .trace-side + .trace-side {
+            border-left: 1px solid var(--line);
+        }
+
+        .trace-side-title {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .trace-aligned-steps {
+            border-top: 1px solid var(--line);
+            display: grid;
+        }
+
+        .trace-step-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            border-top: 1px solid rgba(216, 208, 192, 0.72);
+        }
+
+        .trace-step-row:first-child {
+            border-top: 0;
+        }
+
+        .trace-step-cell {
+            min-width: 0;
+            padding: 16px;
+        }
+
+        .trace-step-cell + .trace-step-cell {
+            border-left: 1px solid var(--line);
+        }
+
+        .trace-step {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.82);
+            overflow: hidden;
+        }
+
+        .trace-step-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 12px;
+            background: rgba(251, 248, 241, 0.9);
+            border-bottom: 1px solid var(--line);
+            font-size: 0.86rem;
+        }
+
+        .trace-block {
+            padding: 12px;
+            border-top: 1px solid rgba(216, 208, 192, 0.64);
+        }
+
+        .trace-block.prompt {
+            background: rgba(43, 108, 176, 0.07);
+            border-left: 4px solid rgba(43, 108, 176, 0.58);
+        }
+
+        .trace-block.action {
+            background: rgba(11, 107, 87, 0.08);
+            border-left: 4px solid rgba(11, 107, 87, 0.58);
+        }
+
+        .trace-block.observation {
+            background: rgba(200, 138, 28, 0.10);
+            border-left: 4px solid rgba(200, 138, 28, 0.62);
+        }
+
+        .trace-block h4 {
+            margin: 0 0 8px;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .trace-block.prompt h4 {
+            color: var(--sky);
+        }
+
+        .trace-block.action h4 {
+            color: var(--accent-strong);
+        }
+
+        .trace-block.observation h4 {
+            color: #8a5a10;
+        }
+
+        .metadata-toggle {
+            border-top: 1px solid rgba(216, 208, 192, 0.64);
+            background: rgba(251, 248, 241, 0.74);
+        }
+
+        .metadata-toggle summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 10px 12px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .metadata-toggle summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .metadata-toggle summary::before {
+            content: "▸";
+            display: inline-block;
+            margin-right: 8px;
+            color: var(--accent);
+        }
+
+        .metadata-toggle[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .metadata-toggle pre {
+            padding: 0 12px 12px;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
         .table-wrap {
             overflow-x: auto;
         }
@@ -431,8 +694,16 @@
 
         @media (max-width: 1024px) {
             .hero-grid,
-            .chart-grid {
+            .chart-grid,
+            .trace-controls,
+            .trace-filter-grid,
+            .trace-step-row {
                 grid-template-columns: 1fr;
+            }
+
+            .trace-step-cell + .trace-step-cell {
+                border-left: 0;
+                border-top: 1px solid var(--line);
             }
         }
 
@@ -459,7 +730,7 @@
             <h1>Compare Benchmark Runs</h1>
             <p>
                 Load one or more viewer artifact JSON files and compare systems at the benchmark level.
-                This page focuses on the aggregate curves and cost / gain tradeoffs, not per-instance trace details.
+                Use the aggregate curves for ranking and the trace inspector for pairwise run analysis.
             </p>
             <div class="hero-grid">
                 <div class="panel">
@@ -471,10 +742,10 @@
                         </label>
                         <button class="button" id="clearButton" type="button">Clear</button>
                     </div>
-                    <div class="footer-note">
-                        Expected input: <code>viewer_artifact_*.json</code> or <code>viewer_artifact_*.json.gz</code> files generated by the benchmark runner.
-                        You can load more files later and they will be added to the current comparison.
-                    </div>
+                <div class="footer-note">
+                    Expected input: <code>viewer_artifact_*.json</code> or <code>viewer_artifact_*.json.gz</code> files generated by the benchmark runner.
+                    You can load more files later and they will be added to the current comparison. A manifest URL can also be passed with <code>?manifest=...</code>.
+                </div>
                 </div>
                 <div class="panel">
                     <h2>Status</h2>
@@ -536,14 +807,16 @@
                                 <th>Fixture</th>
                                 <th>Runs</th>
                                 <th>Cumulative Reward</th>
+                                <th>Reward Std</th>
                                 <th>Cumulative Gain</th>
+                                <th>Gain Std</th>
                                 <th>Mean Total Cost</th>
                                 <th>Avg Response</th>
                                 <th>Sequence</th>
                             </tr>
                         </thead>
                         <tbody id="scoreboardBody">
-                            <tr><td colspan="9" class="empty">Load viewer artifacts to compare systems.</td></tr>
+                            <tr><td colspan="11" class="empty">Load viewer artifacts to compare systems.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -605,6 +878,51 @@
                     </div>
                 </div>
             </section>
+
+            <section class="card">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">Trace Pair Inspector</h2>
+                        <div class="section-copy">Pick two loaded artifacts and inspect run-level interactions side by side.</div>
+                    </div>
+                </div>
+                <div class="trace-controls">
+                    <div class="trace-control-card">
+                        <h3>Left Trace</h3>
+                        <div class="control-row">
+                            <label for="leftArtifactSelect">Artifact</label>
+                            <select id="leftArtifactSelect"></select>
+                        </div>
+                        <div class="control-row">
+                            <label for="leftRunSelect">Run</label>
+                            <select id="leftRunSelect"></select>
+                        </div>
+                    </div>
+                    <div class="trace-control-card">
+                        <h3>Right Trace</h3>
+                        <div class="control-row">
+                            <label for="rightArtifactSelect">Artifact</label>
+                            <select id="rightArtifactSelect"></select>
+                        </div>
+                        <div class="control-row">
+                            <label for="rightRunSelect">Run</label>
+                            <select id="rightRunSelect"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="trace-filter-grid">
+                    <div class="control-row">
+                        <label for="instanceSelect">Instance</label>
+                        <select id="instanceSelect"></select>
+                    </div>
+                    <div class="control-row">
+                        <label for="traceSearch">Search Trace Text</label>
+                        <input id="traceSearch" type="search" placeholder="Prompt, action, observation, instance id">
+                    </div>
+                </div>
+                <div id="traceSummary" class="trace-summary-grid"></div>
+                <div id="tracePairList" class="trace-pair-list"></div>
+            </section>
         </section>
     </main>
 
@@ -636,6 +954,14 @@
                 text: "Waiting for viewer artifacts.",
                 hint: "Load at least one viewer artifact to populate the charts.",
             },
+            trace: {
+                leftKey: null,
+                rightKey: null,
+                leftRunIndex: null,
+                rightRunIndex: null,
+                instanceKey: null,
+                search: "",
+            },
         };
 
         const dom = {
@@ -652,6 +978,14 @@
             meanRewardChart: document.getElementById("meanRewardChart"),
             paretoChart: document.getElementById("paretoChart"),
             gainVsRewardParetoChart: document.getElementById("gainVsRewardParetoChart"),
+            leftArtifactSelect: document.getElementById("leftArtifactSelect"),
+            rightArtifactSelect: document.getElementById("rightArtifactSelect"),
+            leftRunSelect: document.getElementById("leftRunSelect"),
+            rightRunSelect: document.getElementById("rightRunSelect"),
+            instanceSelect: document.getElementById("instanceSelect"),
+            traceSearch: document.getElementById("traceSearch"),
+            traceSummary: document.getElementById("traceSummary"),
+            tracePairList: document.getElementById("tracePairList"),
         };
 
         function formatSigned(value, digits = 4) {
@@ -691,6 +1025,10 @@
                 .replace(/"/g, "&quot;");
         }
 
+        function renderPre(value) {
+            return escapeHtml(String(value ?? "").replace(/\\n/g, "\n").replace(/\\t/g, "\t"));
+        }
+
         function isGzipBytes(bytes) {
             return bytes && bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b;
         }
@@ -710,6 +1048,14 @@
 
         async function readJsonFile(file) {
             return parseJsonBytes(new Uint8Array(await file.arrayBuffer()));
+        }
+
+        async function fetchJson(url) {
+            const response = await fetch(url, { cache: "no-store" });
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}: ${response.status}`);
+            }
+            return parseJsonBytes(new Uint8Array(await response.arrayBuffer()));
         }
 
         function normalizeSummaryShape(summary) {
@@ -750,14 +1096,41 @@
             return valid.reduce((total, value) => total + value, 0);
         }
 
+        function sampleStd(values) {
+            const valid = (values || [])
+                .filter((value) => value !== null && value !== undefined && !Number.isNaN(Number(value)))
+                .map(Number);
+            if (valid.length < 2) {
+                return null;
+            }
+            const avg = valid.reduce((total, value) => total + value, 0) / valid.length;
+            const variance = valid.reduce((total, value) => total + ((value - avg) ** 2), 0) / (valid.length - 1);
+            return Math.sqrt(variance);
+        }
+
         function buildMeanGainSeries(aggregate) {
             return (aggregate?.mean_gain_by_index || [])
                 .map((value) => value === null || value === undefined || Number.isNaN(Number(value)) ? null : Number(value));
         }
 
         function buildSystemLabel(system) {
-            const name = system?.name || "unknown system";
+            const baseName = system?.name || "unknown system";
             const params = system?.params || {};
+
+            // Distinguishing config params: without these, two variants of the
+            // same system (e.g. icl_summary replace vs augment) get identical
+            // labels and cannot be told apart in the scoreboard.
+            const qualifiers = [];
+            if (params.summary_mode) {
+                qualifiers.push(String(params.summary_mode));
+                if (params.summary_window !== undefined && params.summary_window !== null) {
+                    qualifiers.push(`w${params.summary_window}`);
+                }
+                if (params.summary_freeform) {
+                    qualifiers.push("freeform");
+                }
+            }
+            const name = qualifiers.length ? `${baseName}(${qualifiers.join(",")})` : baseName;
 
             if (params.model) {
                 return `${name} · ${params.model}`;
@@ -830,6 +1203,65 @@
             return mean(summary.aggregate?.mean_latency_by_index || []);
         }
 
+        function buildBaselineRewardLookup(summary) {
+            const lookup = new Map();
+            (summary.baseline?.instance_outcomes || []).forEach((outcome) => {
+                if (!outcome) return;
+                const reward = Number(outcome.reward);
+                if (Number.isNaN(reward)) return;
+                if (outcome.instance_id !== undefined && outcome.instance_id !== null) {
+                    lookup.set(`id:${outcome.instance_id}`, reward);
+                }
+                if (outcome.instance_index !== undefined && outcome.instance_index !== null) {
+                    lookup.set(`idx:${outcome.instance_index}`, reward);
+                }
+            });
+            return lookup;
+        }
+
+        function computeRunTotalGain(outcomes, baselineLookup) {
+            let total = 0;
+            let matched = 0;
+            for (const outcome of outcomes || []) {
+                if (!outcome) continue;
+                if (outcome.gain !== undefined && outcome.gain !== null && !Number.isNaN(Number(outcome.gain))) {
+                    total += Number(outcome.gain);
+                    matched += 1;
+                    continue;
+                }
+                const reward = Number(outcome.reward);
+                if (Number.isNaN(reward)) continue;
+                const baselineReward =
+                    baselineLookup.get(`id:${outcome.instance_id}`)
+                    ?? baselineLookup.get(`idx:${outcome.instance_index}`);
+                if (baselineReward === undefined) continue;
+                total += reward - baselineReward;
+                matched += 1;
+            }
+            return matched ? total : null;
+        }
+
+        function computeRunSpread(summary) {
+            const baselineLookup = buildBaselineRewardLookup(summary);
+            const rewardTotals = [];
+            const gainTotals = [];
+            for (const run of summary.runs || []) {
+                const outcomes = run.instance_outcomes || [];
+                const rewardTotal = sum(outcomes.map((outcome) => outcome?.reward));
+                if (rewardTotal !== null) {
+                    rewardTotals.push(rewardTotal);
+                }
+                const gainTotal = computeRunTotalGain(outcomes, baselineLookup);
+                if (gainTotal !== null) {
+                    gainTotals.push(gainTotal);
+                }
+            }
+            return {
+                cumulativeRewardStd: sampleStd(rewardTotals),
+                cumulativeGainStd: sampleStd(gainTotals),
+            };
+        }
+
         function buildArtifactRecord(file, data) {
             if (!isViewerArtifactShape(data)) {
                 throw new Error(`${file.name}: expected a viewer artifact JSON.`);
@@ -846,6 +1278,7 @@
                 .map((value) => value === null || value === undefined ? null : Number(value));
             const finalCumulativeGain = sum(meanGainSeries);
             const finalCumulativeReward = sum(meanRewardSeries);
+            const runSpread = computeRunSpread(summary);
 
             return {
                 key: buildArtifactKey(summary, file),
@@ -869,6 +1302,8 @@
                 meanRewardSeries,
                 finalCumulativeGain,
                 finalCumulativeReward,
+                cumulativeRewardStd: runSpread.cumulativeRewardStd,
+                cumulativeGainStd: runSpread.cumulativeGainStd,
                 finalMeanReward: lastDefined(meanRewardSeries),
                 meanTotalCost: computeMeanTotalCost(summary, data),
                 avgResponseSeconds: computeMeanResponse(summary, data),
@@ -1388,7 +1823,7 @@
 
         function renderScoreboard() {
             if (!state.artifacts.length) {
-                dom.scoreboardBody.innerHTML = `<tr><td colspan="9" class="empty">Load viewer artifacts to compare systems.</td></tr>`;
+                dom.scoreboardBody.innerHTML = `<tr><td colspan="11" class="empty">Load viewer artifacts to compare systems.</td></tr>`;
                 return;
             }
 
@@ -1409,7 +1844,9 @@
                     <td>${escapeHtml(artifact.schedule || artifact.variant || "custom")}</td>
                     <td>${escapeHtml(String(artifact.runCount))}</td>
                     <td>${escapeHtml(formatSigned(artifact.finalCumulativeReward))}</td>
+                    <td>${escapeHtml(formatNumber(artifact.cumulativeRewardStd))}</td>
                     <td>${escapeHtml(artifact.meanGainSeries.length ? formatSigned(artifact.finalCumulativeGain) : "n/a")}</td>
+                    <td>${escapeHtml(formatNumber(artifact.cumulativeGainStd))}</td>
                     <td>${escapeHtml(formatCurrency(artifact.meanTotalCost))}</td>
                     <td>${escapeHtml(formatDuration(artifact.avgResponseSeconds))}</td>
                     <td>${escapeHtml(String(artifact.sequenceLength || "n/a"))}</td>
@@ -1417,7 +1854,485 @@
             `).join("");
         }
 
+        function getArtifact(key) {
+            return state.artifacts.find((artifact) => artifact.key === key) || null;
+        }
+
+        function getRunOptions(artifact) {
+            if (!artifact) {
+                return [];
+            }
+            const runIndexes = new Set();
+            (artifact.summary?.runs || []).forEach((run) => {
+                if (run?.run_index !== undefined && run.run_index !== null) {
+                    runIndexes.add(Number(run.run_index));
+                }
+            });
+            (artifact.data?.run_traces || []).forEach((entry) => {
+                if (entry?.run_index !== undefined && entry.run_index !== null) {
+                    runIndexes.add(Number(entry.run_index));
+                }
+            });
+            return [...runIndexes].filter((value) => !Number.isNaN(value)).sort((left, right) => left - right);
+        }
+
+        function getRunTrace(artifact, runIndex) {
+            if (!artifact || runIndex === null || runIndex === undefined) {
+                return null;
+            }
+            const entry = (artifact.data?.run_traces || [])
+                .find((candidate) => Number(candidate?.run_index) === Number(runIndex));
+            return entry?.trace || null;
+        }
+
+        function getSummaryRun(artifact, runIndex) {
+            return (artifact?.summary?.runs || [])
+                .find((run) => Number(run?.run_index) === Number(runIndex)) || null;
+        }
+
+        function makeOutcomeKey(outcome) {
+            const instanceId = outcome?.instance_id ?? "unknown";
+            const instanceIndex = outcome?.instance_index ?? -1;
+            return `${instanceIndex}:${instanceId}`;
+        }
+
+        function buildOutcomeMap(artifact, trace, runIndex) {
+            const summaryRun = getSummaryRun(artifact, runIndex);
+            const outcomes = Array.isArray(trace?.instance_outcomes) && trace.instance_outcomes.length
+                ? trace.instance_outcomes
+                : (summaryRun?.instance_outcomes || []);
+            return new Map((outcomes || []).filter(Boolean).map((outcome) => [makeOutcomeKey(outcome), outcome]));
+        }
+
+        function groupTraceByInstance(artifact, runIndex) {
+            const trace = getRunTrace(artifact, runIndex);
+            if (!trace || !Array.isArray(trace.interactions)) {
+                return { trace, groups: new Map() };
+            }
+            const outcomeMap = buildOutcomeMap(artifact, trace, runIndex);
+            const groups = new Map();
+            trace.interactions.forEach((interaction) => {
+                const query = interaction.query || {};
+                const instanceId = query.instance_id ?? "unknown";
+                const instanceIndex = query.instance_index ?? -1;
+                const key = `${instanceIndex}:${instanceId}`;
+                if (!groups.has(key)) {
+                    groups.set(key, {
+                        key,
+                        instance_id: instanceId,
+                        instance_index: instanceIndex,
+                        interactions: [],
+                        outcome: outcomeMap.get(key) || null,
+                    });
+                }
+                groups.get(key).interactions.push(interaction);
+            });
+            groups.forEach((group) => {
+                group.interactions.sort((left, right) => Number(left.step_number || 0) - Number(right.step_number || 0));
+            });
+            attachMemoryAfterInstance(groups);
+            return { trace, groups };
+        }
+
+        const MEMORY_METADATA_KEYS = [
+            ["summary_text", "summary"],
+            ["notepad_content", "notepad"],
+            ["ace_playbook", "playbook"],
+        ];
+
+        function extractMemoryDoc(interaction) {
+            const metadata = interaction?.response?.metadata || {};
+            for (const [key, kind] of MEMORY_METADATA_KEYS) {
+                const value = metadata[key];
+                if (typeof value === "string" && value.trim()) {
+                    return { kind, text: value };
+                }
+            }
+            return null;
+        }
+
+        function attachMemoryAfterInstance(groups) {
+            // Memory rewrites land at instance boundaries; the version written
+            // after task N is what the first turn of task N+1 sees. For the
+            // final task the trace has no later turn — point at artifacts.
+            const ordered = Array.from(groups.values());
+            ordered.forEach((group, index) => {
+                const next = ordered[index + 1];
+                if (next) {
+                    const doc = extractMemoryDoc(next.interactions[0]);
+                    if (doc) {
+                        group.memoryAfter = doc;
+                        return;
+                    }
+                }
+                // Fallback: last turn of this instance (notepad/playbook carry
+                // current state per turn; for the last instance this is the
+                // closest available snapshot).
+                const last = group.interactions[group.interactions.length - 1];
+                const doc = extractMemoryDoc(last);
+                if (doc) {
+                    group.memoryAfter = { ...doc, approximate: !next };
+                }
+            });
+        }
+
+        function normalizeTraceSelection() {
+            const artifacts = state.artifacts;
+            if (!artifacts.length) {
+                state.trace.leftKey = null;
+                state.trace.rightKey = null;
+                state.trace.leftRunIndex = null;
+                state.trace.rightRunIndex = null;
+                state.trace.instanceKey = null;
+                return;
+            }
+
+            if (!getArtifact(state.trace.leftKey)) {
+                state.trace.leftKey = artifacts[0].key;
+            }
+            if (!getArtifact(state.trace.rightKey)) {
+                state.trace.rightKey = (artifacts[1] || artifacts[0]).key;
+            }
+
+            const leftRuns = getRunOptions(getArtifact(state.trace.leftKey));
+            const rightRuns = getRunOptions(getArtifact(state.trace.rightKey));
+            const currentLeftRun = state.trace.leftRunIndex === null || state.trace.leftRunIndex === undefined || state.trace.leftRunIndex === ""
+                ? null
+                : Number(state.trace.leftRunIndex);
+            const currentRightRun = state.trace.rightRunIndex === null || state.trace.rightRunIndex === undefined || state.trace.rightRunIndex === ""
+                ? null
+                : Number(state.trace.rightRunIndex);
+            if (currentLeftRun === null || Number.isNaN(currentLeftRun) || !leftRuns.includes(currentLeftRun)) {
+                state.trace.leftRunIndex = leftRuns[0] ?? null;
+            } else {
+                state.trace.leftRunIndex = currentLeftRun;
+            }
+            if (currentRightRun === null || Number.isNaN(currentRightRun) || !rightRuns.includes(currentRightRun)) {
+                state.trace.rightRunIndex = rightRuns[0] ?? null;
+            } else {
+                state.trace.rightRunIndex = currentRightRun;
+            }
+        }
+
+        function renderSelectOptions(select, options, selectedValue, emptyLabel) {
+            if (!options.length) {
+                select.innerHTML = `<option value="">${escapeHtml(emptyLabel)}</option>`;
+                select.value = "";
+                return;
+            }
+            select.innerHTML = options.map((option) => `
+                <option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>
+            `).join("");
+            select.value = String(selectedValue ?? options[0].value);
+        }
+
+        function buildInstanceRows(leftGroups, rightGroups) {
+            const rows = new Map();
+            leftGroups.forEach((group, key) => {
+                rows.set(key, { key, left: group, right: null });
+            });
+            rightGroups.forEach((group, key) => {
+                if (!rows.has(key)) {
+                    rows.set(key, { key, left: null, right: group });
+                } else {
+                    rows.get(key).right = group;
+                }
+            });
+            return [...rows.values()].sort((left, right) => {
+                const leftIndex = left.left?.instance_index ?? left.right?.instance_index ?? 0;
+                const rightIndex = right.left?.instance_index ?? right.right?.instance_index ?? 0;
+                return Number(leftIndex) - Number(rightIndex);
+            });
+        }
+
+        function rowLabel(row) {
+            const group = row.left || row.right || {};
+            const index = Number(group.instance_index);
+            const displayIndex = Number.isNaN(index) || index < 0 ? "?" : String(index + 1);
+            return `Instance ${displayIndex} · ${group.instance_id || "unknown"}`;
+        }
+
+        function renderInstanceOptions(rows) {
+            const commonRows = rows.filter((row) => row.left && row.right);
+            const validKeys = new Set(["__common__", "__union__", ...rows.map((row) => row.key)]);
+            if (!rows.length) {
+                dom.instanceSelect.innerHTML = `<option value="">No instances available</option>`;
+                dom.instanceSelect.value = "";
+                return { selectedRows: [], commonRows };
+            }
+            if (!state.trace.instanceKey || !validKeys.has(state.trace.instanceKey) || (state.trace.instanceKey === "__common__" && !commonRows.length)) {
+                state.trace.instanceKey = (commonRows[0] || rows[0]).key;
+            }
+
+            const commonOptions = commonRows.map((row) => `
+                <option value="${escapeHtml(row.key)}">${escapeHtml(rowLabel(row))}</option>
+            `).join("");
+            const leftOnlyOptions = rows.filter((row) => row.left && !row.right).map((row) => `
+                <option value="${escapeHtml(row.key)}">${escapeHtml(`${rowLabel(row)} · left only`)}</option>
+            `).join("");
+            const rightOnlyOptions = rows.filter((row) => !row.left && row.right).map((row) => `
+                <option value="${escapeHtml(row.key)}">${escapeHtml(`${rowLabel(row)} · right only`)}</option>
+            `).join("");
+
+            dom.instanceSelect.innerHTML = `
+                <option value="__common__">All common instances (${commonRows.length})</option>
+                <option value="__union__">All instances (${rows.length})</option>
+                ${commonOptions ? `<optgroup label="Common">${commonOptions}</optgroup>` : ""}
+                ${leftOnlyOptions ? `<optgroup label="Left only">${leftOnlyOptions}</optgroup>` : ""}
+                ${rightOnlyOptions ? `<optgroup label="Right only">${rightOnlyOptions}</optgroup>` : ""}
+            `;
+            dom.instanceSelect.value = state.trace.instanceKey;
+
+            if (state.trace.instanceKey === "__common__") {
+                return { selectedRows: commonRows, commonRows };
+            }
+            if (state.trace.instanceKey === "__union__") {
+                return { selectedRows: rows, commonRows };
+            }
+            return { selectedRows: rows.filter((row) => row.key === state.trace.instanceKey), commonRows };
+        }
+
+        function traceSearchText(group) {
+            if (!group) {
+                return "";
+            }
+            return [
+                group.instance_id,
+                JSON.stringify(group.outcome || {}),
+                ...group.interactions.map((interaction) => interaction.query?.prompt || ""),
+                ...group.interactions.map((interaction) => JSON.stringify(interaction.response?.action ?? interaction.response ?? {})),
+                ...group.interactions.map((interaction) => interaction.observation?.content || ""),
+            ].join(" ").toLowerCase();
+        }
+
+        function renderTraceHeader(group, artifact, runIndex) {
+            if (!group) {
+                return `<div class="empty">This instance is not present in the selected trace.</div>`;
+            }
+
+            const outcome = group.outcome || {};
+            const status = outcome.success === true ? "success" : outcome.success === false ? "failure" : "unknown";
+            const outcomeMeta = `
+                <div class="trace-side-title">
+                    <span class="color-dot" style="background:${artifact?.color || "var(--muted)"}"></span>
+                    <span>${escapeHtml(artifact?.label || "unknown artifact")}</span>
+                </div>
+                <div class="trace-instance-meta">
+                    <span class="chip">run ${escapeHtml(String(runIndex ?? "n/a"))}</span>
+                    <span class="chip">reward ${escapeHtml(formatSigned(outcome.reward))}</span>
+                    <span class="chip">status ${escapeHtml(status)}</span>
+                    <span class="chip">${escapeHtml(String(group.interactions.length))} steps</span>
+                    <span class="chip">latency ${escapeHtml(formatDuration(outcome.latency_seconds ?? null))}</span>
+                </div>
+                ${renderMemoryAfter(group)}
+            `;
+            return outcomeMeta;
+        }
+
+        function renderMemoryAfter(group) {
+            const doc = group?.memoryAfter;
+            if (!doc) {
+                return "";
+            }
+            const label = doc.approximate
+                ? `memory during final task (${doc.kind}; post-task version in traces artifacts)`
+                : `memory written after this task (${doc.kind})`;
+            return `
+                <details class="metadata-toggle">
+                    <summary>📝 ${escapeHtml(label)} · ${escapeHtml(String(doc.text.length))} chars</summary>
+                    <pre>${renderPre(doc.text)}</pre>
+                </details>
+            `;
+        }
+
+        function stepKey(interaction, fallbackIndex) {
+            const stepNumber = interaction?.step_number;
+            return stepNumber === undefined || stepNumber === null ? `unknown-${fallbackIndex}` : String(stepNumber);
+        }
+
+        function mapInteractionsByStep(group) {
+            const mapped = new Map();
+            (group?.interactions || []).forEach((interaction, index) => {
+                mapped.set(stepKey(interaction, index), interaction);
+            });
+            return mapped;
+        }
+
+        function compareStepKeys(left, right) {
+            const leftNumber = Number(left);
+            const rightNumber = Number(right);
+            const leftIsNumber = !Number.isNaN(leftNumber);
+            const rightIsNumber = !Number.isNaN(rightNumber);
+            if (leftIsNumber && rightIsNumber) {
+                return leftNumber - rightNumber;
+            }
+            if (leftIsNumber) {
+                return -1;
+            }
+            if (rightIsNumber) {
+                return 1;
+            }
+            return left.localeCompare(right);
+        }
+
+        function renderTraceStep(interaction) {
+            if (!interaction) {
+                return `<div class="empty">No matching step in this trace.</div>`;
+            }
+            const responseAction = interaction.response?.action ?? interaction.response ?? {};
+            const responseMetadata = interaction.response?.metadata;
+            const timing = interaction.timing || {};
+            const usage = interaction.usage?.interaction || {};
+            const metadataBlock = responseMetadata && Object.keys(responseMetadata).length ? `
+                <details class="metadata-toggle">
+                    <summary>Response Metadata</summary>
+                    <pre>${renderPre(JSON.stringify(responseMetadata, null, 2))}</pre>
+                </details>
+            ` : "";
+            return `
+                <div class="trace-step">
+                    <div class="trace-step-head">
+                        <strong>Step ${escapeHtml(String(interaction.step_number || "?"))}</strong>
+                        <span>latency ${escapeHtml(formatDuration(timing.response_latency_seconds ?? null))} · cost ${escapeHtml(formatCurrency(usage.cost_usd ?? null))}</span>
+                    </div>
+                    <div class="trace-block prompt">
+                        <h4>Prompt</h4>
+                        <pre>${renderPre(interaction.query?.prompt || "")}</pre>
+                    </div>
+                    <div class="trace-block action">
+                        <h4>Action</h4>
+                        <pre>${renderPre(typeof responseAction === "string" ? responseAction : JSON.stringify(responseAction, null, 2))}</pre>
+                    </div>
+                    <div class="trace-block observation">
+                        <h4>Observation</h4>
+                        <pre>${renderPre(interaction.observation?.content || "")}</pre>
+                    </div>
+                    ${metadataBlock}
+                </div>
+            `;
+        }
+
+        function renderAlignedTraceRows(leftGroup, rightGroup) {
+            // Align by within-instance ordinal (turn 1, turn 2, ...), NOT by the
+            // global step_number: step numbers accumulate across the whole run,
+            // so two settings whose earlier instances used different step
+            // counts would never line up on later instances. Each side's
+            // interactions are already sorted by step_number, so positional
+            // pairing gives "k-th turn of this task vs k-th turn of this task".
+            const leftTurns = leftGroup?.interactions || [];
+            const rightTurns = rightGroup?.interactions || [];
+            const rowCount = Math.max(leftTurns.length, rightTurns.length);
+            if (!rowCount) {
+                return `<div class="empty">No interactions recorded for this instance.</div>`;
+            }
+            return `
+                <div class="trace-aligned-steps">
+                    ${Array.from({ length: rowCount }, (_, ordinal) => `
+                        <div class="trace-step-row">
+                            <div class="trace-step-cell">${renderTraceStep(leftTurns[ordinal])}</div>
+                            <div class="trace-step-cell">${renderTraceStep(rightTurns[ordinal])}</div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function renderTraceInspector() {
+            normalizeTraceSelection();
+
+            const artifactOptions = state.artifacts.map((artifact) => ({
+                value: artifact.key,
+                label: artifact.label,
+            }));
+            renderSelectOptions(dom.leftArtifactSelect, artifactOptions, state.trace.leftKey, "No artifacts loaded");
+            renderSelectOptions(dom.rightArtifactSelect, artifactOptions, state.trace.rightKey, "No artifacts loaded");
+
+            const leftArtifact = getArtifact(state.trace.leftKey);
+            const rightArtifact = getArtifact(state.trace.rightKey);
+            const leftRunOptions = getRunOptions(leftArtifact).map((runIndex) => ({ value: runIndex, label: `run_${String(runIndex).padStart(4, "0")}` }));
+            const rightRunOptions = getRunOptions(rightArtifact).map((runIndex) => ({ value: runIndex, label: `run_${String(runIndex).padStart(4, "0")}` }));
+            renderSelectOptions(dom.leftRunSelect, leftRunOptions, state.trace.leftRunIndex, "No run traces");
+            renderSelectOptions(dom.rightRunSelect, rightRunOptions, state.trace.rightRunIndex, "No run traces");
+            dom.traceSearch.value = state.trace.search;
+
+            if (!state.artifacts.length) {
+                dom.instanceSelect.innerHTML = `<option value="">No artifacts loaded</option>`;
+                dom.traceSummary.innerHTML = "";
+                dom.tracePairList.innerHTML = `<div class="empty">Load viewer artifacts to inspect per-run traces.</div>`;
+                return;
+            }
+
+            const left = groupTraceByInstance(leftArtifact, state.trace.leftRunIndex);
+            const right = groupTraceByInstance(rightArtifact, state.trace.rightRunIndex);
+            const rows = buildInstanceRows(left.groups, right.groups);
+            let { selectedRows, commonRows } = renderInstanceOptions(rows);
+            const search = state.trace.search.trim().toLowerCase();
+            if (search) {
+                selectedRows = selectedRows.filter((row) => (
+                    traceSearchText(row.left).includes(search)
+                    || traceSearchText(row.right).includes(search)
+                ));
+            }
+
+            const leftInteractions = left.trace?.interactions?.length || 0;
+            const rightInteractions = right.trace?.interactions?.length || 0;
+            dom.traceSummary.innerHTML = [
+                ["Left Trace", leftArtifact ? `${leftArtifact.label} · run ${state.trace.leftRunIndex ?? "n/a"}` : "n/a", `${left.groups.size} instances · ${leftInteractions} interactions`],
+                ["Right Trace", rightArtifact ? `${rightArtifact.label} · run ${state.trace.rightRunIndex ?? "n/a"}` : "n/a", `${right.groups.size} instances · ${rightInteractions} interactions`],
+                ["Common Instances", String(commonRows.length), `${rows.length} total instance keys`],
+                ["Shown Instances", String(selectedRows.length), search ? `filtered by "${state.trace.search}"` : "current instance selection"],
+            ].map(([label, value, sub]) => `
+                <div class="trace-pill">
+                    ${escapeHtml(label)}
+                    <strong>${escapeHtml(value)}</strong>
+                    <div>${escapeHtml(sub)}</div>
+                </div>
+            `).join("");
+
+            if (!left.trace && !right.trace) {
+                dom.tracePairList.innerHTML = `<div class="empty">The selected runs do not include trace payloads.</div>`;
+                return;
+            }
+            if (!selectedRows.length) {
+                dom.tracePairList.innerHTML = `<div class="empty">No instances match the current trace filters.</div>`;
+                return;
+            }
+
+            const openSingle = state.trace.instanceKey !== "__common__" && state.trace.instanceKey !== "__union__";
+            dom.tracePairList.innerHTML = selectedRows.map((row, index) => {
+                const group = row.left || row.right || {};
+                const leftSteps = row.left?.interactions?.length || 0;
+                const rightSteps = row.right?.interactions?.length || 0;
+                return `
+                    <details class="trace-instance" ${openSingle || index === 0 ? "open" : ""}>
+                        <summary>
+                            <div class="trace-instance-head">
+                                <div class="trace-instance-title">${escapeHtml(rowLabel(row))}</div>
+                                <div class="trace-instance-meta">
+                                    <span class="chip">index ${escapeHtml(String((Number(group.instance_index) >= 0 ? Number(group.instance_index) + 1 : "?")))}</span>
+                                    <span class="chip">left ${escapeHtml(String(leftSteps))} steps</span>
+                                    <span class="chip">right ${escapeHtml(String(rightSteps))} steps</span>
+                                </div>
+                            </div>
+                        </summary>
+                        <div class="trace-step-row">
+                            <div class="trace-side">${renderTraceHeader(row.left, leftArtifact, state.trace.leftRunIndex)}</div>
+                            <div class="trace-side">${renderTraceHeader(row.right, rightArtifact, state.trace.rightRunIndex)}</div>
+                        </div>
+                        ${renderAlignedTraceRows(row.left, row.right)}
+                    </details>
+                `;
+            }).join("");
+        }
+
         function renderCharts() {
+            if (typeof Chart === "undefined") {
+                state.charts.cumulativeGain = null;
+                state.charts.meanReward = null;
+                state.charts.pareto = null;
+                state.charts.gainVsRewardPareto = null;
+                return;
+            }
             renderLineChart(
                 "cumulativeGain",
                 dom.cumulativeGainChart,
@@ -1452,12 +2367,17 @@
             renderNotes();
             renderCharts();
             renderScoreboard();
+            renderTraceInspector();
         }
 
         async function loadArtifacts(files) {
             const parsed = await Promise.allSettled(
                 [...files].map(async (file) => buildArtifactRecord(file, await readJsonFile(file)))
             );
+            applyArtifactLoadResults(parsed);
+        }
+
+        function applyArtifactLoadResults(parsed) {
 
             const loaded = [];
             const errors = [];
@@ -1489,10 +2409,52 @@
             renderAll();
         }
 
+        function normalizeManifestEntry(entry) {
+            if (typeof entry === "string") {
+                return { path: entry, label: entry.split("/").slice(-3).join("/") };
+            }
+            if (entry && typeof entry === "object") {
+                const path = entry.path || entry.url || entry.artifact;
+                if (!path) {
+                    return null;
+                }
+                return {
+                    path,
+                    label: entry.label || path.split("/").slice(-3).join("/"),
+                };
+            }
+            return null;
+        }
+
+        async function loadManifest(manifestUrl) {
+            setStatus("idle", "Loading artifact manifest.", manifestUrl);
+            const manifest = await fetchJson(manifestUrl);
+            const rawEntries = Array.isArray(manifest) ? manifest : (manifest.artifacts || []);
+            const entries = rawEntries.map(normalizeManifestEntry).filter(Boolean);
+            if (!entries.length) {
+                throw new Error(`${manifestUrl}: no artifact entries found.`);
+            }
+            const baseUrl = new URL(manifestUrl, window.location.href);
+            const parsed = await Promise.allSettled(entries.map(async (entry) => {
+                const artifactUrl = new URL(entry.path, baseUrl).toString();
+                const data = await fetchJson(artifactUrl);
+                return buildArtifactRecord({ name: entry.label || entry.path }, data);
+            }));
+            applyArtifactLoadResults(parsed);
+        }
+
         function clearAll() {
             state.artifacts = [];
             state.nextColorIndex = 0;
             state.notice = null;
+            state.trace = {
+                leftKey: null,
+                rightKey: null,
+                leftRunIndex: null,
+                rightRunIndex: null,
+                instanceKey: null,
+                search: "",
+            };
             destroyChart(state.charts.cumulativeGain);
             destroyChart(state.charts.meanReward);
             destroyChart(state.charts.pareto);
@@ -1518,7 +2480,62 @@
 
         dom.clearButton.addEventListener("click", clearAll);
 
-        renderAll();
+        dom.leftArtifactSelect.addEventListener("change", () => {
+            state.trace.leftKey = dom.leftArtifactSelect.value || null;
+            state.trace.leftRunIndex = null;
+            state.trace.instanceKey = null;
+            renderAll();
+        });
+
+        dom.rightArtifactSelect.addEventListener("change", () => {
+            state.trace.rightKey = dom.rightArtifactSelect.value || null;
+            state.trace.rightRunIndex = null;
+            state.trace.instanceKey = null;
+            renderAll();
+        });
+
+        dom.leftRunSelect.addEventListener("change", () => {
+            state.trace.leftRunIndex = dom.leftRunSelect.value === "" ? null : Number(dom.leftRunSelect.value);
+            state.trace.instanceKey = null;
+            renderAll();
+        });
+
+        dom.rightRunSelect.addEventListener("change", () => {
+            state.trace.rightRunIndex = dom.rightRunSelect.value === "" ? null : Number(dom.rightRunSelect.value);
+            state.trace.instanceKey = null;
+            renderAll();
+        });
+
+        dom.instanceSelect.addEventListener("change", () => {
+            state.trace.instanceKey = dom.instanceSelect.value || "__common__";
+            renderAll();
+        });
+
+        dom.traceSearch.addEventListener("input", () => {
+            state.trace.search = dom.traceSearch.value;
+            renderTraceInspector();
+        });
+
+        async function bootstrap() {
+            renderAll();
+            const params = new URLSearchParams(window.location.search);
+            const manifestUrl = params.get("manifest");
+            if (!manifestUrl) {
+                return;
+            }
+            try {
+                await loadManifest(manifestUrl);
+            } catch (error) {
+                state.notice = {
+                    kind: "error",
+                    text: "Manifest load failed.",
+                    hint: error.message,
+                };
+                renderAll();
+            }
+        }
+
+        bootstrap();
     </script>
 </body>
 </html>

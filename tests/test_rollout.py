@@ -1111,3 +1111,57 @@ class RunRolloutsBasicTests(_TmpCwdTestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RunIndicesTests(unittest.TestCase):
+    """--run-indices: rerun a subset of runs with their canonical seeded order."""
+
+    def test_selected_indices_run_only_those_runs(self):
+        with patch(
+            "src.runs.ProcessPoolExecutor", side_effect=AssertionError("no pool")
+        ):
+            results, trace_data = run_benchmark_runs(
+                task_class=UnsafeDummyTask,
+                task_params={},
+                system_class=DummySystem,
+                system_params={},
+                runs=5,
+                max_workers=1,
+                system_name="dummy_system",
+                task_name="dummy",
+                run_indices=[1, 3],
+            )
+        self.assertEqual(len(results.results), 2)
+        self.assertEqual(len(trace_data), 2)
+        run_ids = [t.get("execution", {}).get("run_index") for t in trace_data]
+        self.assertEqual(run_ids, [1, 3])
+
+    def test_out_of_range_indices_rejected(self):
+        with self.assertRaises(ValueError):
+            run_benchmark_runs(
+                task_class=UnsafeDummyTask,
+                task_params={},
+                system_class=DummySystem,
+                system_params={},
+                runs=3,
+                max_workers=1,
+                system_name="dummy_system",
+                task_name="dummy",
+                run_indices=[5],
+            )
+
+    def test_default_behavior_unchanged(self):
+        with patch(
+            "src.runs.ProcessPoolExecutor", side_effect=AssertionError("no pool")
+        ):
+            results, _ = run_benchmark_runs(
+                task_class=UnsafeDummyTask,
+                task_params={},
+                system_class=DummySystem,
+                system_params={},
+                runs=3,
+                max_workers=1,
+                system_name="dummy_system",
+                task_name="dummy",
+            )
+        self.assertEqual(len(results.results), 3)
