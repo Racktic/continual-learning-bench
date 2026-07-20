@@ -116,7 +116,7 @@ function renderChart(rows, field, svgId, legendId) {
   const empty=visibleSeries.length ? '' : `<text x="${W/2}" y="${H/2}" text-anchor="middle" font-size="13" fill="#667085">All series hidden. Click a legend item to show lines.</text>`;
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML=`${grid}<line x1="${pad.l}" y1="${H-pad.b}" x2="${W-pad.r}" y2="${H-pad.b}" stroke="#98a2b3"/>${paths}${empty}`;
   const legend=document.getElementById(legendId);
-  const ctl=`<button type="button" class="legend-item legend-ctl" data-legend-all="1">全选</button><button type="button" class="legend-item legend-ctl" data-legend-none="1">全不选</button>`;
+  const ctl=`<button type="button" class="legend-item legend-ctl" data-legend-all="1">Select all</button><button type="button" class="legend-item legend-ctl" data-legend-none="1">Deselect all</button>`;
   legend.innerHTML=ctl+series.map(s=>`<button type="button" class="legend-item ${hiddenSeries.has(s.id)?'hidden':''}" data-series-id="${escapeHtml(s.id)}"><span class="swatch" style="background:${s.color}"></span>${escapeHtml(s.id)}</button>`).join('');
   legend.querySelectorAll('[data-series-id]').forEach(button=>button.addEventListener('click',()=>{ const id=button.getAttribute('data-series-id'); hiddenSeries.has(id) ? hiddenSeries.delete(id) : hiddenSeries.add(id); render(); }));
   legend.querySelector('[data-legend-all]').addEventListener('click',()=>{ series.forEach(s=>hiddenSeries.delete(s.id)); render(); });
