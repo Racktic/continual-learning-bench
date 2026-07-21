@@ -67,3 +67,39 @@ def grade(log: str, fail_to_pass: list[str], pass_to_pass: list[str]) -> dict:
         "passed_expected": expected_passed,
         "n_parsed": len(parsed),
     }
+
+
+def build_eval_script(base_commit, install_steps, test_cmds, patch_files=("model.patch", "test.patch")):
+    """Container-side judging script (validated on gold: isort/babel/cookiecutter 3/3).
+
+    Flow (order is load-bearing — each step was a debugged failure mode):
+      1. HOME=/tmp                — images set HOME to a nonexistent host path
+      2. discover repo dir        — repo lives at /<basename>, .git at depth<=3
+      3. git reset --hard base    — build leaves the worktree dirty ("does not match index")
+      4. install_config.install   — per-repo env fixups live here (e.g. babel's
+                                     setup.cfg [pytest]->[tool:pytest] sed); omitting
+                                     it breaks pytest config parsing
+      5. git apply model+test     — official 3way/recount/ignore-space args
+      6. test_cmds                — output is fed to parse_log_pytest + grade()
+
+    patch_files: filenames under /patches the caller has written into the sandbox.
+    Returns a bash script string; run it with `apptainer exec --writable <sb> bash <script>`.
+    """
+    inst = install_steps if isinstance(install_steps, (list, tuple)) else ([install_steps] if install_steps else [])
+    inst_str = " ; ".join(inst) if inst else "true"
+    tcmd_str = " && ".join(test_cmds) if test_cmds else "true"
+    applies = "\n".join(
+        f'git apply -v --3way --recount --ignore-space-change --whitespace=nowarn /patches/{p} || exit 4'
+        for p in patch_files
+    )
+    return f'''#!/bin/bash
+export HOME=/tmp
+repo=""
+for c in /*; do [ -d "$c/.git" ] && repo="$c" && break; done
+[ -z "$repo" ] && repo=$(dirname "$(find / -maxdepth 3 -name .git -type d -not -path "/tmp/*" -not -path "/patches/*" -not -path "/proc/*" 2>/dev/null | head -1)")
+cd "$repo" || exit 3
+git reset --hard {base_commit} >/dev/null 2>&1 || git reset --hard >/dev/null 2>&1
+{inst_str}
+{applies}
+{tcmd_str}
+'''
