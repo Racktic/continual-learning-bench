@@ -51,10 +51,29 @@ _REBENCH_SINGULARITY_EXEC_ARGS = "--contain --cleanenv --no-mount hostfs,bind-pa
 class SweRebenchTask(CodebaseAdaptationTask):
     r_max = 40
 
-    def __init__(self, *args, **kwargs):
+    def __init__(
+        self,
+        dataset_path: str = "data/swe_rebench/pilot.jsonl",
+        repo_filter: str | None = None,
+        num_instances: int = 56,
+        max_steps_per_issue: int = 40,
+        seed: int = 42,
+        same_repo: bool = False,
+        variant: str | None = None,
+        schedule: str | None = None,
+    ):
         import os
         os.environ["CLBENCH_SINGULARITY_EXEC_ARGS"] = _REBENCH_SINGULARITY_EXEC_ARGS
-        super().__init__(*args, **kwargs)
+        super().__init__(
+            dataset_path=dataset_path,
+            repo_filter=repo_filter,
+            num_instances=num_instances,
+            max_steps_per_issue=max_steps_per_issue,
+            seed=seed,
+            same_repo=same_repo,
+            variant=variant,
+            schedule=schedule,
+        )
 
     def _initialize_generic_pr_workspace(self, instance: TaskInstance) -> None:
         # parent: reset --hard + checkout base_commit + apply test_patch
