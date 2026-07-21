@@ -41,8 +41,20 @@ def _run_install(container_id, instance, *, timeout, cwd):
             logger.warning("install step nonzero (%s): %s", cmd, (r.stdout or "")[-200:])
 
 
+# rebench 镜像基于 python:3.9/3.10-slim(老 glibc),外层 miles SIF 的 libfakeroot 需 GLIBC_2.38,
+# --fakeroot 会注入它导致 "GLIBC_2.38 not found"(RUNBOOK W6.5)。故禁用 --fakeroot;沙箱以本用户
+# 解包,git reset/clean/写文件均无需 root(swe_bench_cl 已验证同款做法)。PATH/LANG 不写死——
+# 各仓 python 版本不同,依赖镜像自带 env(--cleanenv 保留镜像 ENV)。
+_REBENCH_SINGULARITY_EXEC_ARGS = "--contain --cleanenv --no-mount hostfs,bind-paths --env LANG=C.UTF-8"
+
+
 class SweRebenchTask(CodebaseAdaptationTask):
     r_max = 40
+
+    def __init__(self, *args, **kwargs):
+        import os
+        os.environ["CLBENCH_SINGULARITY_EXEC_ARGS"] = _REBENCH_SINGULARITY_EXEC_ARGS
+        super().__init__(*args, **kwargs)
 
     def _initialize_generic_pr_workspace(self, instance: TaskInstance) -> None:
         # parent: reset --hard + checkout base_commit + apply test_patch
