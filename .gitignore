@@ -26,3 +26,8 @@ scratchpad/
 *.egg-info/
 tmp/
 .pi
+# SWE-smith instance registries — symlinks into cluster storage (0.1–1.1 GB each),
+# far past GitHub's file limit. Sync them out of band; never commit the link.
+data/swe_smith/top53.jsonl
+data/swe_smith/top32.jsonl
+data/swe_smith/pilot.jsonl
