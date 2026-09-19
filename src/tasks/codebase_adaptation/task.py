@@ -9,6 +9,7 @@ Uses mini-swe-agent's DockerEnvironment as the execution harness and its
 templates/parsing conventions for model interaction.
 """
 
+import os
 import random
 import logging
 import shlex
@@ -34,6 +35,14 @@ from ...interface import (
     format_task_agent_brief,
 )
 from ...registry import register_task
+
+# Single-issue prompt variant (2026-09-12, user-specified). The default prompt
+# frames every issue as one step of a 12-issue sequence; the single-issue GRPO
+# baseline has no sequence, so those two spots are reworded. Env-gated and off
+# by default: the sequence arms and the offline eval keep byte-identical prompts.
+_SINGLE_ISSUE_PROMPT = os.environ.get(
+    "CODEBASE_SINGLE_ISSUE_PROMPT", ""
+).strip().lower() in {"1", "true", "yes", "on"}
 from ..schedules import (
     TaskScheduleSpec,
     get_task_schedule,
@@ -630,6 +639,16 @@ class CodebaseAdaptationTask(ContinualLearningTask):
         )
 
     def get_agent_brief(self) -> TaskAgentBrief:
+        if _SINGLE_ISSUE_PROMPT:
+            return TaskAgentBrief(
+                objective="Resolve the repository issue as efficiently as possible.",
+                instance_unit="One issue in the codebase.",
+                reward_definition="Reward is the negative per-issue regret, where solving in fewer command steps is better.",
+                completion_definition="An instance completes when you submit a final patch or exhaust the step budget for the issue.",
+                constraints=[
+                    "Each message should contain exactly one bash command.",
+                ],
+            )
         return TaskAgentBrief(
             objective="Resolve each repository issue as efficiently as possible while reusing knowledge from earlier issues.",
             instance_unit="One issue in the codebase.",
@@ -994,9 +1013,17 @@ class CodebaseAdaptationTask(ContinualLearningTask):
             **_CONTAINER_OS,
         )
 
+        # Keep the conditional to the header line only: adjacent string literals
+        # concatenate lexically, so putting `if/else` inside the parenthesised
+        # concatenation would split the whole prompt across the two branches.
+        issue_header = (
+            "--- Issue ---\n"
+            if _SINGLE_ISSUE_PROMPT
+            else f"--- Issue {self.current_issue_idx + 1}/{len(self.instances)} ---\n"
+        )
         prompt = (
             f"{system_instructions}\n{task_prompt}\n\n"
-            f"--- Issue {self.current_issue_idx + 1}/{len(self.instances)} ---\n"
+            f"{issue_header}"
             f"Repository: {instance.repo}\n"
         )
         test_hint = self._repo_test_hint(instance.repo)
